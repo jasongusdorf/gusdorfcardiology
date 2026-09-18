@@ -4,8 +4,10 @@ import Breadcrumb from '../../../components/Breadcrumb.astro';
 import CardiologyDiagram from '../../../components/CardiologyDiagram.astro';
 import LessonDeepDive from '../../../components/LessonDeepDive.astro';
 import ClinicalDiagram from '../../../components/ClinicalDiagram.astro';
+import LessonLearningLayers from '../../../components/LessonLearningLayers.astro';
 import guidelines from '../../../data/cardiology-guidelines.json';
 import { cardiologyTracks, type CardiologyLesson, type CardiologyTrack } from '../../../data/cardiology-curriculum';
+import { lessonLearningModels, lessonNejmReviews } from '../../../data/lesson-learning-models';
 
 export function getStaticPaths() {
   return cardiologyTracks.flatMap((track) => track.lessons.map((lesson) => ({
@@ -19,6 +21,8 @@ const matchingGuidelines = (guidelines as any[]).filter((guideline) =>
   lesson.guidelineTopics?.some((topic) => guideline.topic.toLowerCase().includes(topic.toLowerCase())),
 );
 const sectionClass = 'rounded-xl border border-clinical-200 bg-warm-white p-5 dark:border-clinical-700 dark:bg-clinical-800';
+const learningModel = lessonLearningModels[lesson.slug];
+const nejmReviews = lessonNejmReviews[lesson.slug] ?? [];
 ---
 
 <BaseLayout title={`${lesson.title} - Cardiology`} description={lesson.dek}>
@@ -47,6 +51,8 @@ const sectionClass = 'rounded-xl border border-clinical-200 bg-warm-white p-5 da
 
     {lesson.diagrams?.map((diagram) => <CardiologyDiagram kind={diagram} />)}
     {lesson.clinicalDiagram && <ClinicalDiagram kind={lesson.clinicalDiagram} />}
+
+    {learningModel && <LessonLearningLayers model={learningModel} color={track.color} />}
 
     <LessonDeepDive lesson={lesson} color={track.color} />
 
@@ -87,6 +93,20 @@ const sectionClass = 'rounded-xl border border-clinical-200 bg-warm-white p-5 da
             <a href="/guidelines" class="mt-3 inline-block text-sm font-medium text-blue-600 hover:underline dark:text-blue-400">Browse the full guideline library →</a>
           </div>
         )}
+        {nejmReviews.length > 0 && (
+          <div class="mt-5 border-t border-clinical-200 pt-5 dark:border-clinical-700">
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-clinical-500">Further reading · New England Journal of Medicine</h3>
+            <ul class="mt-3 space-y-3">
+              {nejmReviews.map((item) => (
+                <li>
+                  <a href={item.url} target="_blank" rel="noreferrer" class="font-medium text-blue-700 hover:underline dark:text-blue-400">{item.title} ↗</a>
+                  <p class="mt-1 text-sm leading-6 text-clinical-600 dark:text-clinical-300">{item.note}</p>
+                </li>
+              ))}
+            </ul>
+            <p class="mt-3 text-xs leading-5 text-clinical-500">Links resolve through DOI to the article’s canonical NEJM page. Access may depend on institutional or personal subscription.</p>
+          </div>
+        )}
         <div class="mt-5">
           <h3 class="text-sm font-semibold uppercase tracking-wide text-clinical-500">Core textbook references</h3>
           <ul class="mt-2 space-y-1 text-sm leading-6 text-clinical-600 dark:text-clinical-300">
@@ -96,7 +116,7 @@ const sectionClass = 'rounded-xl border border-clinical-200 bg-warm-white p-5 da
       </section>
 
     <footer class="mt-10 border-t border-clinical-200 pt-5 text-sm text-clinical-500 dark:border-clinical-700 dark:text-clinical-400">
-      <p>Evidence review: September 17, 2026. Educational material for clinicians. Verify recommendations against the linked current guideline and the patient’s circumstances.</p>
+      <p>Evidence review: September 18, 2026. Educational material for clinicians. Verify recommendations against the linked current guideline and the patient’s circumstances.</p>
       <p class="mt-2">Clinical peer review status: pending. This draft should not be represented as independently physician-reviewed until a named reviewer has approved it.</p>
     </footer>
   </article>

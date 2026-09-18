@@ -13,6 +13,13 @@ export type CardiologyLesson = {
   related?: { label: string; href: string }[];
   diagrams?: Array<'circulation' | 'myocyte' | 'action-potentials' | 'reentry' | 'pv-loop'>;
   clinicalDiagram?: 'heart-sounds' | 'murmur-maneuvers' | 'jvp' | 'profiles' | 'ecg-territories';
+  learningModel?: {
+    eli5: string;
+    analogy: string;
+    teachBack: string;
+    checkpoints: string[];
+  };
+  nejmReviews?: Array<{ title: string; url: string; note: string }>;
 };
 
 export type CardiologyTrack = {
