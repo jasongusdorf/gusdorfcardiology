@@ -1,0 +1,47 @@
+---
+import type { CardiologyLesson } from '../data/cardiology-curriculum';
+const { lesson, color } = Astro.props as { lesson: CardiologyLesson; color: string };
+const steps = [
+  { n: '1', label: 'Build the mechanism', text: lesson.mechanism },
+  { n: '2', label: 'Recognize the pattern', text: lesson.findings.join(' ') },
+  { n: '3', label: 'Confirm and classify', text: lesson.testing.join(' ') },
+  { n: '4', label: 'Act and reassess', text: lesson.management.join(' ') },
+];
+---
+
+<section class="my-8 rounded-2xl border border-clinical-200 bg-[#fbf8f1] p-5 dark:border-clinical-700 dark:bg-clinical-900 sm:p-7">
+  <p class="text-xs font-bold uppercase tracking-[0.16em] text-blue-700 dark:text-blue-300">Deep dive</p>
+  <h2 class="mt-1 font-heading text-2xl font-semibold text-clinical-900 dark:text-white">A reusable reasoning framework</h2>
+  <p class="mt-2 max-w-3xl text-sm leading-6 text-clinical-600 dark:text-clinical-300">Move from physiology to pattern recognition, diagnostic proof, and an action that changes the patient’s trajectory.</p>
+
+  <div class="mt-6 grid gap-3 lg:grid-cols-4">
+    {steps.map((step, index) => (
+      <div class="relative rounded-xl border border-clinical-200 bg-white p-4 dark:border-clinical-700 dark:bg-clinical-800">
+        <div class="mb-3 flex items-center gap-2"><span class="grid h-7 w-7 place-items-center rounded-full text-xs font-bold text-white" style={`background:${color}`}>{step.n}</span><h3 class="text-sm font-bold text-clinical-900 dark:text-white">{step.label}</h3></div>
+        <p class="text-sm leading-6 text-clinical-600 dark:text-clinical-300">{step.text}</p>
+        {index < 3 && <span class="absolute -right-3 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-[#fbf8f1] px-1 text-clinical-400 dark:bg-clinical-900 lg:block" aria-hidden="true">→</span>}
+      </div>
+    ))}
+  </div>
+</section>
+
+<section class="my-8 grid gap-5 md:grid-cols-2">
+  <div class="rounded-xl border border-clinical-200 bg-warm-white p-5 dark:border-clinical-700 dark:bg-clinical-800">
+    <h2 class="font-heading text-xl font-semibold text-clinical-900 dark:text-white">By the end, you should be able to</h2>
+    <ul class="mt-4 space-y-3 text-sm leading-6 text-clinical-700 dark:text-clinical-200">
+      <li class="flex gap-2"><span class="font-bold text-blue-600">01</span><span>Explain the underlying mechanism without relying on a memorized label.</span></li>
+      <li class="flex gap-2"><span class="font-bold text-blue-600">02</span><span>Recognize the highest-yield clinical and physiologic findings.</span></li>
+      <li class="flex gap-2"><span class="font-bold text-blue-600">03</span><span>Choose a test because of the decision it can change.</span></li>
+      <li class="flex gap-2"><span class="font-bold text-blue-600">04</span><span>Start appropriate management and name what must be reassessed.</span></li>
+    </ul>
+  </div>
+  <div class="rounded-xl border border-amber-200 bg-amber-50 p-5 dark:border-amber-900 dark:bg-amber-950/30">
+    <h2 class="font-heading text-xl font-semibold text-clinical-900 dark:text-white">Check your understanding</h2>
+    <ol class="mt-4 space-y-3 text-sm leading-6 text-clinical-700 dark:text-clinical-200">
+      <li><strong>Mechanism:</strong> What variable changes first, and what changes downstream?</li>
+      <li><strong>Discrimination:</strong> Which finding best separates this process from its closest mimic?</li>
+      <li><strong>Testing:</strong> What result would actually change what you do next?</li>
+      <li><strong>Safety:</strong> Which common shortcut creates the greatest risk? <span class="text-clinical-500">Hint: {lesson.pitfalls[0]}</span></li>
+    </ol>
+  </div>
+</section>

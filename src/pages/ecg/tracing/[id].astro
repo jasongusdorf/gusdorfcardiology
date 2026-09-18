@@ -79,15 +79,9 @@ const facts = [
       </h1>
     </header>
 
-    <a href={t.image} target="_blank" rel="noopener">
-      <img
-        src={t.image}
-        width={t.w}
-        height={t.h}
-        alt={`12-lead ECG, PTB-XL record ${t.id}, labelled ${cat.name.toLowerCase()}`}
-        class="w-full h-auto rounded-lg border border-clinical-200 dark:border-clinical-700 bg-white"
-      />
-    </a>
+    <div class="overflow-hidden rounded-lg border border-clinical-200 bg-white dark:border-clinical-700" style={`aspect-ratio:${t.w}/${t.h - 36}`}>
+      <img src={t.image} width={t.w} height={t.h} alt="12-lead ECG" class="block h-auto w-full" style="transform:translateY(-36px)" />
+    </div>
     <p class="mt-2 text-xs text-clinical-500 dark:text-clinical-400">
       25 mm/s, 10 mm/mV unless the tracing states otherwise. Open the image for full resolution.
     </p>

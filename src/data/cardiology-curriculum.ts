@@ -12,6 +12,7 @@ export type CardiologyLesson = {
   guidelineTopics?: string[];
   related?: { label: string; href: string }[];
   diagrams?: Array<'circulation' | 'myocyte' | 'action-potentials' | 'reentry' | 'pv-loop'>;
+  clinicalDiagram?: 'heart-sounds' | 'murmur-maneuvers' | 'jvp' | 'profiles' | 'ecg-territories';
 };
 
 export type CardiologyTrack = {
@@ -97,6 +98,7 @@ export const cardiologyTracks: CardiologyTrack[] = [
         pitfalls: ['Calling any low-frequency diastolic sound an S3.', 'Missing a rub because it is transient or has only one audible component.'],
         searchTerms: ['S1', 'S2', 'S3', 'S4', 'opening snap', 'click', 'rub'],
         related: [{ label: 'Heart sound library', href: '/heart-sounds' }],
+        clinicalDiagram: 'heart-sounds',
       },
       {
         slug: 'murmurs-and-dynamic-maneuvers', title: 'Murmurs and dynamic maneuvers', level: 'Core',
@@ -108,6 +110,7 @@ export const cardiologyTracks: CardiologyTrack[] = [
         pitfalls: ['Inferring severity from intensity alone.', 'Ignoring high-output states that create benign flow murmurs.'],
         searchTerms: ['murmur', 'handgrip', 'Valsalva', 'squatting', 'radiation'],
         related: [{ label: 'Heart sound library', href: '/heart-sounds' }],
+        clinicalDiagram: 'murmur-maneuvers',
       },
       {
         slug: 'jugular-venous-examination', title: 'Jugular venous examination', level: 'Core',
@@ -118,6 +121,7 @@ export const cardiologyTracks: CardiologyTrack[] = [
         management: ['Trend JVP with symptoms, weight, renal function, and perfusion during decongestion.'],
         pitfalls: ['Mistaking the carotid pulse for the JVP.', 'Reporting “no JVD” without positioning or a measurable estimate.'],
         searchTerms: ['JVP', 'a wave', 'v wave', 'Kussmaul', 'hepatojugular reflux'],
+        clinicalDiagram: 'jvp',
       },
       {
         slug: 'congestion-and-perfusion', title: 'Congestion and perfusion at the bedside', level: 'Core',
@@ -129,6 +133,7 @@ export const cardiologyTracks: CardiologyTrack[] = [
         pitfalls: ['Using peripheral edema alone to diagnose intravascular overload.', 'Giving reflex fluids for creatinine elevation despite clear venous congestion.'],
         searchTerms: ['congestion', 'perfusion', 'wet warm', 'shock', 'volume status'],
         guidelineTopics: ['Heart failure'],
+        clinicalDiagram: 'profiles',
       },
     ],
   },
@@ -150,6 +155,7 @@ export const cardiologyTracks: CardiologyTrack[] = [
         pitfalls: ['Letting the automated interpretation anchor the read.', 'Calling every ST elevation STEMI without checking morphology, reciprocal change, symptoms, and prior ECGs.'],
         searchTerms: ['ECG', 'EKG', 'axis', 'interval', 'ST segment', 'rhythm'],
         related: [{ label: 'ECG library', href: '/ecg' }, { label: 'ECG quiz', href: '/ecg/quiz' }],
+        clinicalDiagram: 'ecg-territories',
       },
       {
         slug: 'telemetry-and-artifact', title: 'Telemetry, monitoring, and artifact', level: 'Core',

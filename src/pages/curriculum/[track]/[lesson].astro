@@ -2,6 +2,8 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../../components/Breadcrumb.astro';
 import CardiologyDiagram from '../../../components/CardiologyDiagram.astro';
+import LessonDeepDive from '../../../components/LessonDeepDive.astro';
+import ClinicalDiagram from '../../../components/ClinicalDiagram.astro';
 import guidelines from '../../../data/cardiology-guidelines.json';
 import { cardiologyTracks, type CardiologyLesson, type CardiologyTrack } from '../../../data/cardiology-curriculum';
 
@@ -44,6 +46,9 @@ const sectionClass = 'rounded-xl border border-clinical-200 bg-warm-white p-5 da
     </section>
 
     {lesson.diagrams?.map((diagram) => <CardiologyDiagram kind={diagram} />)}
+    {lesson.clinicalDiagram && <ClinicalDiagram kind={lesson.clinicalDiagram} />}
+
+    <LessonDeepDive lesson={lesson} color={track.color} />
 
     <div class="grid gap-5 md:grid-cols-2">
       {[

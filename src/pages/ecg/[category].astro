@@ -54,15 +54,9 @@ const { cat, group, prev, next } = Astro.props as any;
         <li>
           <figure>
             <a href={`/ecg/tracing/${t.id}`} class="block group">
-              <img
-                src={t.image}
-                width={t.w}
-                height={t.h}
-                loading="lazy"
-                decoding="async"
-                alt={`12-lead ECG showing ${cat.name.toLowerCase()}, PTB-XL record ${t.id}`}
-                class="w-full h-auto rounded-lg border border-clinical-200 dark:border-clinical-700 group-hover:border-blue-500 dark:group-hover:border-blue-400 transition-colors bg-white"
-              />
+              <span class="block overflow-hidden rounded-lg border border-clinical-200 bg-white transition-colors group-hover:border-blue-500 dark:border-clinical-700 dark:group-hover:border-blue-400" style={`aspect-ratio:${t.w}/${t.h - 36}`}>
+                <img src={t.image} width={t.w} height={t.h} loading="lazy" decoding="async" alt="12-lead ECG for interpretation" class="block h-auto w-full" style="transform:translateY(-36px)" />
+              </span>
             </a>
             <figcaption class="mt-2 text-sm text-clinical-500 dark:text-clinical-400">
               <a href={`/ecg/tracing/${t.id}`} class="font-medium text-blue-600 dark:text-blue-400 hover:underline">

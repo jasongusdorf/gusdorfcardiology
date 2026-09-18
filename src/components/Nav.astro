@@ -1,5 +1,6 @@
 ---
 const links = [
+  { href: '/', label: 'Home', exact: true },
   { href: '/curriculum', label: 'Curriculum' },
   { href: '/ecg', label: 'ECG Library' },
   { href: '/heart-sounds', label: 'Heart Sounds' },
@@ -16,7 +17,7 @@ const path = Astro.url.pathname;
       <span class="font-heading text-[1.05rem] font-bold tracking-tight">Gusdorf <span class="font-normal text-clinical-500 dark:text-clinical-300">Cardiology</span></span>
     </a>
     <div class="hidden items-center gap-5 md:flex">
-      {links.map((link) => <a class:list={["border-b-2 py-5 text-sm font-medium transition", path.startsWith(link.href) ? "border-blue-700 text-blue-700 dark:border-blue-300 dark:text-blue-300" : "border-transparent text-clinical-600 hover:text-clinical-900 dark:text-clinical-300 dark:hover:text-white"]} href={link.href}>{link.label}</a>)}
+      {links.map((link) => <a class:list={["border-b-2 py-5 text-sm font-medium transition", (link.exact ? path === link.href : path.startsWith(link.href)) ? "border-blue-700 text-blue-700 dark:border-blue-300 dark:text-blue-300" : "border-transparent text-clinical-600 hover:text-clinical-900 dark:text-clinical-300 dark:hover:text-white"]} href={link.href}>{link.label}</a>)}
       <a class="rounded-full border border-clinical-300 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-clinical-700 transition hover:border-blue-700 hover:text-blue-700 dark:border-clinical-600 dark:text-clinical-200" href="https://llmsfordoctors.com/trials?tag=cardiology">AI research ↗</a>
     </div>
     <details class="relative md:hidden">

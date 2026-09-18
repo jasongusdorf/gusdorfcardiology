@@ -84,13 +84,9 @@ export default function EcgQuiz({
         </p>
       </div>
 
-      <img
-        src={q.s}
-        width={q.w}
-        height={q.h}
-        alt="12-lead ECG to interpret"
-        class="w-full h-auto rounded-lg border border-clinical-200 dark:border-clinical-700 bg-white"
-      />
+      <div class="overflow-hidden rounded-lg border border-clinical-200 bg-white dark:border-clinical-700" style={{ aspectRatio: `${q.w} / ${q.h - 36}` }}>
+        <img src={q.s} width={q.w} height={q.h} alt="12-lead ECG to interpret" class="block h-auto w-full" style={{ transform: 'translateY(-36px)' }} />
+      </div>
 
       <div class="grid sm:grid-cols-2 gap-2 mt-5">
         {opts.map((o) => {
