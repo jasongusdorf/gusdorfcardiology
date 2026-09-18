@@ -11,6 +11,10 @@ export type MediaInterpretation = {
   supportedFindings: string[];
   clinicalMeaning: string;
   pitfalls: string[];
+  sourceClaim: string;
+  differential: string[];
+  missingData: string[];
+  selfTest: { prompt: string; answer: string };
 };
 
 const acronyms: Record<string,string> = {
@@ -65,6 +69,22 @@ const diseaseGuides: Array<{match: RegExp; findings: string[]; meaning: string; 
   { match:/septal defect|\bASD\b|\bVSD\b|shunt|Gerbode/i, findings:['Define the defect location and relationship to valves, then use color and spectral Doppler to establish flow direction and velocity when available.','Assess chamber enlargement as evidence of hemodynamic consequence.'], meaning:'Anatomic visualization identifies a possible communication; shunt magnitude and significance require Doppler, oximetry, or cross-sectional quantification.', pitfalls:['Color dropout can mimic a defect, while suboptimal alignment can conceal one.'] },
 ];
 
+const clinicalExtensions: Array<{match: RegExp; differential: string[]; missingData: string[]; prompt: string; answer: string}> = [
+  { match:/aortic stenosis|stenotic aortic/i, differential:['True severe high-gradient AS','Low-flow, low-gradient severe AS','Pseudo-severe or moderate AS with restricted-looking cusps'], missingData:['Peak velocity, mean gradient, and LVOT-derived valve area','Stroke-volume index and dimensionless index','Blood pressure, symptoms, and LV response'], prompt:'Which three measurements prevent you from grading aortic stenosis from leaflet appearance alone?', answer:'At minimum: peak velocity, mean gradient, and calculated valve area; discordant studies also require flow state and dimensionless index.' },
+  { match:/mitral regurg|flail mitral|mitral prolapse|papillary/i, differential:['Primary leaflet/chordal disease','Secondary ventricular functional MR','Atrial functional MR from annular dilation'], missingData:['Vena contracta and quantitative regurgitant volume/fraction','Pulmonary-vein flow and CW Doppler profile','LV/LA size, pulmonary pressure, and loading conditions'], prompt:'What separates mechanism from severity in mitral regurgitation?', answer:'Morphology and jet direction suggest mechanism; an integrated Doppler and chamber-response assessment establishes severity.' },
+  { match:/aortic regurg|aortic insuff/i, differential:['Primary cusp disease','Aortic-root or ascending-aortic dilation','Endocarditic perforation or acute dissection'], missingData:['Vena contracta, flow reversal, pressure half-time, and quantitative flow','LV size/function and aortic dimensions','Clinical tempo and blood pressure'], prompt:'Why can acute severe AR look less impressive than chronic AR?', answer:'There may be no time for LV dilation, and rapid pressure equalization can shorten or soften the murmur and Doppler signal.' },
+  { match:/endocarditis|vegetation|abscess/i, differential:['Vegetation or peri-annular infection','Degenerative tissue or Lambl excrescence','Thrombus, suture material, or imaging artifact'], missingData:['Multiple TTE/TEE planes and comparison imaging','Blood cultures and clinical probability','Valve destruction, regurgitation, and peri-annular extension'], prompt:'Why is a mobile valve mass not automatically endocarditis?', answer:'Several normal and pathologic structures mimic vegetation; diagnosis integrates microbiology, clinical probability, and destructive valve findings.' },
+  { match:/dissection/i, differential:['True intimal flap','Reverberation or motion artifact','Atherosclerotic plaque or intramural hematoma'], missingData:['Complete gated CT/MR or TEE evaluation of the aorta','Aortic regurgitation, branch vessels, and pericardium','Clinical syndrome and pulse/perfusion findings'], prompt:'What feature makes an apparent aortic flap more convincing?', answer:'Independent motion with separation of true and false lumens in more than one plane, ideally confirmed by definitive aortic imaging.' },
+  { match:/hypertrophic|HCM|LVOT|systolic anterior motion/i, differential:['Sarcomeric HCM','Hypertensive or valvular remodeling','Infiltrative/storage phenocopy or athlete remodeling'], missingData:['Maximal wall thickness in properly aligned views','Resting and provoked LVOT gradient','CMR tissue characterization, pedigree, and genetics when appropriate'], prompt:'What turns hypertrophy into obstructive physiology?', answer:'Dynamic systolic narrowing with SAM/mitral–septal contact and a measurable resting or provoked LVOT gradient.' },
+  { match:/dilated cardiomy|heart failure|reduced ejection|HFrEF/i, differential:['Ischemic cardiomyopathy','Genetic or idiopathic DCM','Toxic, inflammatory, tachycardia-mediated, or valvular disease'], missingData:['Quantified biplane EF and ventricular volumes','Regional pattern, coronary assessment, and CMR tissue characterization','Rhythm history, exposures, laboratory clues, and pedigree'], prompt:'Why is “dilated cardiomyopathy” a phenotype rather than an etiology?', answer:'Many distinct diseases produce dilation and systolic dysfunction; cause requires history, coronary evaluation, tissue characterization, and sometimes genetics.' },
+  { match:/pulmonary embol|RV strain|right ventricular dysfunction|pulmonary hypertension/i, differential:['Acute RV pressure load such as PE','Chronic pulmonary hypertension','RV infarction, cardiomyopathy, or volume overload'], missingData:['RV/LV ratio, TAPSE/S′/FAC, septal shape, and TR velocity','CT/VQ or pulmonary vascular evaluation as appropriate','Prior imaging and invasive hemodynamics when classification matters'], prompt:'Why can echo support but not diagnose pulmonary embolism?', answer:'RV pressure-overload signs are not cause-specific and may be chronic; pulmonary vascular imaging and clinical probability establish PE.' },
+  { match:/tamponade|pericardial effusion/i, differential:['Effusion without hemodynamic effect','Tamponade physiology','Pleural fluid, epicardial fat, or loculated postoperative collection'], missingData:['Right-sided chamber collapse timing','Respiratory Doppler variation and IVC response','Blood pressure, pulsus, ventilation status, and clinical trajectory'], prompt:'What makes tamponade a physiologic diagnosis?', answer:'Pressure impairs filling and output; effusion size alone does not establish that consequence.' },
+  { match:/myocardial infarct|infarction|ischemi|wall motion/i, differential:['Acute or chronic ischemic injury','Stress cardiomyopathy','Myocarditis, pacing/conduction abnormality, or postsurgical motion'], missingData:['Coronary distribution across multiple views','ECG, serial troponin, symptoms, and prior imaging','Perfusion and CMR edema/scar imaging when needed'], prompt:'Can a regional wall-motion abnormality date an infarct?', answer:'Not reliably; prior imaging, wall thickness, ECG/biomarker trajectory, perfusion, and tissue characterization establish acuity.' },
+  { match:/septal defect|\bASD\b|\bVSD\b|shunt|Gerbode/i, differential:['True intracardiac communication','Color or tissue-dropout artifact','Alternative shunt level or postoperative residual flow'], missingData:['Defect rims/location in orthogonal planes','Color/spectral direction and velocity','Qp:Qs or oximetry plus chamber remodeling'], prompt:'What establishes whether a visible septal defect is hemodynamically important?', answer:'Shunt magnitude and chamber consequences—not the anatomic hole alone.' },
+  { match:/prosthe|mechanical valve|bioprosth/i, differential:['Normal prosthetic motion and expected gradients','Thrombosis or pannus obstruction','Structural degeneration, dehiscence, or paravalvular leak'], missingData:['Valve type/size and expected reference hemodynamics','Doppler velocity index, acceleration time, gradients, and regurgitation','TEE, fluoroscopy, or CT when leaflet motion is uncertain'], prompt:'Why must a prosthetic gradient be compared with valve type and flow?', answer:'Expected gradients vary by design and size, while high flow can elevate gradients without obstruction.' },
+  { match:/bicuspid/i, differential:['Bicuspid aortic valve phenotype','Tricuspid valve with commissural fusion or poor visualization','Unicuspid or other congenital valve morphology'], missingData:['Systolic short-axis morphology in multiple frames','Doppler stenosis/regurgitation assessment','Aortic-root and ascending-aortic dimensions'], prompt:'What additional structure must always be evaluated with a bicuspid aortic valve?', answer:'The entire visible thoracic aorta because bicuspid valve disease is associated with aortopathy.' },
+];
+
 export function interpretationFor(item: CardiologyMedia): MediaInterpretation {
   const text = `${item.title} ${item.description}`;
   const isCmr = /MRI|magnetic/i.test(item.modality);
@@ -80,11 +100,27 @@ export function interpretationFor(item: CardiologyMedia): MediaInterpretation {
       ? ['Name the window/view and judge adequacy.','Assess chamber size and global systolic function.','Inspect valve morphology and motion.','Look for regional wall-motion, septal, pericardial, and great-vessel abnormalities.','Use Doppler measurements—not appearance alone—for hemodynamic severity.']
       : ['Name the projection and anatomy.','Describe the visible abnormality before naming a diagnosis.','Look for secondary chamber or vascular consequences.','State the additional views or measurements needed.'];
   const guide = diseaseGuides.find(entry=>entry.match.test(text));
+  const extension = clinicalExtensions.find(entry=>entry.match.test(text));
+  const sourceClaim = item.description?.trim() || `The source labels this as ${displayTitleFor(item)}.`;
   return {
     orientation,
     checklist,
     supportedFindings: guide?.findings ?? ['The source identifies this asset as the finding described above. The available record does not provide enough adjudicated measurements to make a more specific patient-level interpretation.','Use the loop to practice systematic description, then return to the original source for the complete case and acquisition context.'],
     clinicalMeaning: guide?.meaning ?? 'This is a teaching example rather than a complete diagnostic study. Its value is pattern recognition; clinical conclusions require the full examination, measurements, and patient context.',
     pitfalls: guide?.pitfalls ?? ['Do not infer severity, acuity, or etiology from a single selected loop.','The source label has not been independently adjudicated by this site.'],
+    sourceClaim,
+    differential: extension?.differential ?? (isCmr
+      ? ['Normal or physiologic variation','Primary myocardial disease','Loading, ischemic, inflammatory, or technical explanation for the visible pattern']
+      : isEcho
+        ? ['Normal variant or acquisition artifact','Primary structural lesion','Secondary change caused by loading conditions or another cardiac process']
+        : ['True structural abnormality','Normal variant','Projection or acquisition artifact']),
+    missingData: extension?.missingData ?? (isCmr
+      ? ['Orthogonal cine planes and quantified ventricular volumes/function','T1/T2, perfusion, and late-gadolinium enhancement when clinically relevant','Clinical context, ECG, and comparison imaging']
+      : isEcho
+        ? ['A complete set of standard views','Quantitative color and spectral Doppler measurements','Loading conditions, rhythm, symptoms, and prior studies']
+        : ['Additional projections or sequences','Quantitative measurements','Clinical context and comparison imaging']),
+    selfTest: extension
+      ? { prompt: extension.prompt, answer: extension.answer }
+      : { prompt: `Before reading the source label, how would you describe this ${item.modality.toLowerCase()} study in one sentence?`, answer: 'A strong answer names the view and modality, describes anatomy and motion without overcalling severity, identifies the dominant visible pattern, and states what data are missing.' },
   };
 }
