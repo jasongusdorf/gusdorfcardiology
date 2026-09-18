@@ -1,0 +1,24 @@
+---
+const links = [
+  { href: '/curriculum', label: 'Curriculum' },
+  { href: '/ecg', label: 'ECG Library' },
+  { href: '/heart-sounds', label: 'Heart Sounds' },
+  { href: '/guidelines', label: 'Guidelines' },
+];
+---
+<nav class="fixed inset-x-0 top-0 z-50 border-b border-clinical-200 bg-clinical-50/95 backdrop-blur dark:border-clinical-700 dark:bg-clinical-900/95" aria-label="Main navigation">
+  <div class="mx-auto flex h-16 max-w-7xl items-center gap-5 px-4 sm:px-6 lg:px-8">
+    <a href="/" class="mr-auto font-heading text-lg font-bold tracking-tight text-clinical-900 dark:text-white">Gusdorf <span class="text-red-700 dark:text-red-400">Cardiology</span></a>
+    <div class="hidden items-center gap-5 md:flex">
+      {links.map((link) => <a class="text-sm font-medium hover:text-red-700 dark:hover:text-red-400" href={link.href}>{link.label}</a>)}
+      <a class="text-sm font-medium text-blue-700 dark:text-blue-300" href="https://llmsfordoctors.com/trials?tag=cardiology">AI + Cardiology ↗</a>
+    </div>
+    <details class="relative md:hidden">
+      <summary class="cursor-pointer list-none rounded-md border border-clinical-300 px-3 py-1.5 text-sm">Menu</summary>
+      <div class="absolute right-0 mt-2 w-56 rounded-lg border border-clinical-200 bg-white p-2 shadow-xl dark:border-clinical-700 dark:bg-clinical-800">
+        {links.map((link) => <a class="block rounded px-3 py-2 text-sm hover:bg-clinical-100 dark:hover:bg-clinical-700" href={link.href}>{link.label}</a>)}
+        <a class="block rounded px-3 py-2 text-sm text-blue-700 dark:text-blue-300" href="https://llmsfordoctors.com/trials?tag=cardiology">AI + Cardiology ↗</a>
+      </div>
+    </details>
+  </div>
+</nav>

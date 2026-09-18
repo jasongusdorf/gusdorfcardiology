@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import { cardiologyTracks, allCardiologyLessons } from '../../data/cardiology-curriculum';
+---
+<BaseLayout title="Cardiology Curriculum" description="A practical cardiology curriculum from foundational physiology through advanced clinical practice.">
+  <div class="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+    <Breadcrumb crumbs={[{ label: 'Home', href: '/' }, { label: 'Curriculum' }]} />
+    <header class="mb-10 max-w-3xl"><h1 class="font-heading text-4xl font-bold text-clinical-900 dark:text-white sm:text-5xl">Cardiology curriculum</h1><p class="mt-4 text-lg text-clinical-600 dark:text-clinical-300">{allCardiologyLessons.length} lessons across {cardiologyTracks.length} tracks, built around the decisions clinicians actually make.</p></header>
+    <div class="grid gap-6 md:grid-cols-2">
+      {cardiologyTracks.map((track, index) => <a href={`/curriculum/${track.slug}`} class="group rounded-2xl border border-clinical-200 bg-warm-white p-6 hover:border-red-700 dark:border-clinical-700 dark:bg-clinical-800"><p class="text-xs font-bold uppercase tracking-widest text-red-700 dark:text-red-400">Track {String(index + 1).padStart(2, '0')}</p><h2 class="mt-3 font-heading text-2xl text-clinical-900 group-hover:text-red-800 dark:text-white dark:group-hover:text-red-300">{track.title}</h2><p class="mt-3 text-clinical-600 dark:text-clinical-300">{track.description}</p><p class="mt-5 text-sm font-semibold">{track.lessons.length} lessons →</p></a>)}
+    </div>
+  </div>
+</BaseLayout>

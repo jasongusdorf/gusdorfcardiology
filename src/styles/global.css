@@ -1,0 +1,178 @@
+@import "tailwindcss";
+@variant dark (&:where(.dark, .dark *));
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-heading: 'Quadraat', 'Georgia', serif;
+  --font-display: 'Quadraat', 'Georgia', serif;
+  --font-body: 'Quadraat', 'Georgia', serif;
+
+  /* Aurora background animation */
+  --animate-aurora: aurora 60s linear infinite;
+
+  /* Fade-in-up animation (replaces framer-motion) */
+  --animate-fade-in-up: fade-in-up 0.8s ease-in-out 0.3s both;
+
+  /* Design system colors (shadcn-compatible) */
+  --color-background: #f8f4ec;
+  --color-foreground: #0f172a;
+  --color-primary: #2563eb;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #f0ead8;
+  --color-secondary-foreground: #0f172a;
+  --color-muted: #f0ead8;
+  --color-muted-foreground: #64748b;
+  --color-accent: #f0ead8;
+  --color-accent-foreground: #0f172a;
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #ffffff;
+  --color-border: #ddd3be;
+  --color-input: #ddd3be;
+  --color-ring: #2563eb;
+
+  /* Warm white for cards and elevated surfaces */
+  --color-warm-white: #fdfaf4;
+
+  /* Clinical palette */
+  --color-clinical-50: #f8f4ec;
+  --color-clinical-100: #f0ead8;
+  --color-clinical-200: #ddd3be;
+  --color-clinical-300: #c8b898;
+  --color-clinical-400: #94a3b8;
+  --color-clinical-500: #64748b;
+  --color-clinical-600: #475569;
+  --color-clinical-700: #334155;
+  --color-clinical-800: #1e293b;
+  --color-clinical-900: #0f172a;
+
+  /* Callout colors */
+  --color-callout-hipaa-bg: #fef2f2;
+  --color-callout-hipaa-border: #ef4444;
+  --color-callout-hipaa-text: #991b1b;
+
+  --color-callout-pitfall-bg: #fffbeb;
+  --color-callout-pitfall-border: #f59e0b;
+  --color-callout-pitfall-text: #92400e;
+
+  --color-callout-tip-bg: #eff6ff;
+  --color-callout-tip-border: #3b82f6;
+  --color-callout-tip-text: #1e40af;
+
+  --color-callout-evidence-bg: #f0fdf4;
+  --color-callout-evidence-border: #22c55e;
+  --color-callout-evidence-text: #166534;
+}
+
+@layer base {
+  @font-face {
+    font-family: 'Quadraat';
+    src: url('/fonts/Quadraat-Regular.woff2') format('woff2');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+  }
+}
+
+@layer components {
+  .home-hero {
+    background:
+      linear-gradient(90deg, color-mix(in srgb, var(--color-clinical-200) 42%, transparent) 1px, transparent 1px),
+      var(--color-warm-white);
+    background-size: min(11vw, 9rem) 100%;
+  }
+
+  .dark .home-hero {
+    background:
+      linear-gradient(90deg, rgb(51 65 85 / 0.32) 1px, transparent 1px),
+      var(--color-clinical-900);
+    background-size: min(11vw, 9rem) 100%;
+  }
+
+  .home-kicker {
+    @apply text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-clinical-500 dark:text-clinical-400;
+  }
+
+  .home-section {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+
+  .home-section-header {
+    @apply flex items-end justify-between gap-6 border-t border-clinical-300 dark:border-clinical-700 pt-4 mb-9;
+  }
+
+  .home-section-title {
+    @apply mt-2 font-heading text-3xl sm:text-4xl font-medium tracking-[-0.025em] leading-tight text-clinical-900 dark:text-clinical-50;
+  }
+
+  .home-text-link {
+    @apply font-semibold text-clinical-700 dark:text-clinical-200 underline decoration-clinical-300 dark:decoration-clinical-600 underline-offset-4 hover:text-blue-700 dark:hover:text-blue-300 hover:decoration-current transition-colors;
+  }
+
+  .home-feature {
+    @apply relative flex flex-col py-7 md:p-7 md:first:pl-0 border-b last:border-b-0 md:border-b-0 border-clinical-200 dark:border-clinical-700 min-h-64;
+  }
+
+  .home-feature .home-index {
+    @apply text-xs tabular-nums text-clinical-400 dark:text-clinical-500;
+  }
+
+  .home-feature h3 {
+    @apply mt-8 font-heading text-2xl leading-tight text-clinical-900 dark:text-clinical-50 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors;
+  }
+
+  .home-feature p {
+    @apply mt-3 text-sm leading-relaxed text-clinical-500 dark:text-clinical-400;
+  }
+
+  .home-feature .home-read {
+    @apply mt-auto pt-7 text-sm font-semibold text-clinical-700 dark:text-clinical-300;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Aurora background color variables */
+:root {
+  --white: #fff;
+  --black: #000;
+  --transparent: transparent;
+  --aurora-1: #f0ead8;
+  --aurora-2: #f8f4ec;
+  --aurora-3: #e8ddc4;
+  --aurora-4: #f5eedf;
+  --aurora-5: #f0ead8;
+}
+
+@keyframes aurora {
+  from {
+    background-position: 50% 50%, 50% 50%;
+  }
+  to {
+    background-position: 350% 50%, 350% 50%;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(2.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media print {
+  nav, footer, .no-print, .dark-mode-toggle { display: none !important; }
+  body { font-size: 12pt; line-height: 1.5; color: #000; background: #fff; }
+  a { color: #000; text-decoration: underline; }
+  a[href^="http"]::after { content: ' (' attr(href) ')'; font-size: 0.8em; }
+}
