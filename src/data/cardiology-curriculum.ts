@@ -11,6 +11,7 @@ export type CardiologyLesson = {
   searchTerms: string[];
   guidelineTopics?: string[];
   related?: { label: string; href: string }[];
+  diagrams?: Array<'circulation' | 'myocyte' | 'action-potentials' | 'reentry' | 'pv-loop'>;
 };
 
 export type CardiologyTrack = {
@@ -41,6 +42,7 @@ export const cardiologyTracks: CardiologyTrack[] = [
         management: ['Ask which chamber, valve, vessel, or conduction structure is failing before naming a syndrome.', 'Predict the upstream congestion and downstream hypoperfusion created by each lesion.'],
         pitfalls: ['Equating a loud murmur with severe disease.', 'Forgetting that acute severe regurgitation can be soft because pressures equalize rapidly.'],
         searchTerms: ['chambers', 'valves', 'coronary circulation', 'conduction system'],
+        diagrams: ['circulation'],
       },
       {
         slug: 'cardiac-cycle-and-pressure-volume-loops', title: 'The cardiac cycle and pressure-volume loops', level: 'Core',
@@ -51,6 +53,7 @@ export const cardiologyTracks: CardiologyTrack[] = [
         management: ['Match therapy to physiology: remove excess volume, reduce impedance, improve contractility only when needed, and correct the lesion driving the loop.', 'Reassess after an intervention because the same blood pressure can conceal a different stroke volume.'],
         pitfalls: ['Treating ejection fraction as contractility.', 'Assuming a normal EF excludes heart failure or low forward flow.'],
         searchTerms: ['preload', 'afterload', 'contractility', 'compliance', 'pressure volume loop'],
+        diagrams: ['pv-loop'],
       },
       {
         slug: 'electrophysiology-and-reentry', title: 'Electrophysiology, conduction, and reentry', level: 'Core',
@@ -62,6 +65,7 @@ export const cardiologyTracks: CardiologyTrack[] = [
         pitfalls: ['Calling every regular narrow-complex tachycardia “SVT” without defining the mechanism.', 'Using AV-nodal blockade in an irregular wide-complex rhythm when pre-excited AF is possible.'],
         searchTerms: ['action potential', 'reentry', 'conduction', 'automaticity', 'antiarrhythmic'],
         related: [{ label: 'ECG library', href: '/ecg' }],
+        diagrams: ['myocyte', 'action-potentials', 'reentry'],
       },
       {
         slug: 'probability-and-cardiac-testing', title: 'Probability before testing', level: 'Core',

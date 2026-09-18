@@ -1,0 +1,102 @@
+---
+type DiagramKind = 'circulation' | 'myocyte' | 'action-potentials' | 'reentry' | 'pv-loop';
+const { kind } = Astro.props as { kind: DiagramKind };
+
+const meta: Record<DiagramKind, { title: string; caption: string }> = {
+  circulation: { title: 'One circulation, two pumps', caption: 'Follow pressure and oxygenation through two circuits in series. Valves open when upstream pressure exceeds downstream pressure.' },
+  myocyte: { title: 'How an electrical signal becomes contraction', caption: 'A small calcium trigger through L-type channels releases a much larger calcium store from the sarcoplasmic reticulum. Relaxation requires active calcium removal.' },
+  'action-potentials': { title: 'Two action potentials, different channel logic', caption: 'Working myocardium and His–Purkinje tissue use fast sodium current for phase 0. SA and AV nodal cells use calcium current and spontaneously depolarize during phase 4.' },
+  reentry: { title: 'The three ingredients for reentry', caption: 'A loop requires two pathways with different conduction and refractory properties, a unidirectional block, and enough time for previously refractory tissue to recover.' },
+  'pv-loop': { title: 'The ventricular pressure–volume loop', caption: 'Valve events divide the loop into filling, isovolumetric contraction, ejection, and isovolumetric relaxation. Width is stroke volume; enclosed area is stroke work.' },
+};
+const info = meta[kind];
+---
+
+<figure class="my-8 overflow-hidden rounded-2xl border border-clinical-200 bg-[#fbf8f1] dark:border-clinical-700 dark:bg-clinical-900" aria-labelledby={`diagram-${kind}`}>
+  <div class="border-b border-clinical-200 px-5 py-4 dark:border-clinical-700">
+    <p class="text-xs font-bold uppercase tracking-[0.16em] text-blue-700 dark:text-blue-300">Visual model</p>
+    <h2 id={`diagram-${kind}`} class="mt-1 font-heading text-2xl font-semibold text-clinical-900 dark:text-white">{info.title}</h2>
+  </div>
+
+  {kind === 'circulation' && (
+    <svg viewBox="0 0 900 430" role="img" aria-label="Blood flows from systemic veins through the right heart and lungs, then through the left heart and systemic arteries">
+      <defs><marker id="arrow-flow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#526273" /></marker></defs>
+      <g class="edges" marker-end="url(#arrow-flow)"><path d="M142 215H218"/><path d="M330 215H390"/><path d="M510 215H570"/><path d="M682 215H758"/><path d="M810 275C810 365 90 365 90 275"/></g>
+      <g class="node venous"><rect x="40" y="155" width="102" height="120" rx="18"/><text x="91" y="198">Systemic</text><text x="91" y="219">veins</text><text class="sub" x="91" y="246">low O₂</text></g>
+      <g class="node right"><rect x="218" y="125" width="112" height="180" rx="20"/><text x="274" y="177">RA</text><path d="M234 211H314"/><text x="274" y="259">RV</text><text class="sub" x="274" y="289">low pressure</text></g>
+      <g class="node lungs"><rect x="390" y="155" width="120" height="120" rx="60"/><text x="450" y="204">Lungs</text><text class="sub" x="450" y="230">gas exchange</text></g>
+      <g class="node left"><rect x="570" y="125" width="112" height="180" rx="20"/><text x="626" y="177">LA</text><path d="M586 211H666"/><text x="626" y="259">LV</text><text class="sub" x="626" y="289">high pressure</text></g>
+      <g class="node arterial"><rect x="758" y="155" width="102" height="120" rx="18"/><text x="809" y="198">Systemic</text><text x="809" y="219">arteries</text><text class="sub" x="809" y="246">high O₂</text></g>
+      <g class="valves"><text x="181" y="196">tricuspid</text><text x="360" y="196">pulmonic</text><text x="540" y="196">mitral</text><text x="720" y="196">aortic</text></g>
+      <text class="note" x="450" y="397">Congestion appears upstream of a failing pump or obstructed valve</text>
+    </svg>
+  )}
+
+  {kind === 'myocyte' && (
+    <svg viewBox="0 0 900 500" role="img" aria-label="Excitation contraction coupling in a cardiac myocyte">
+      <defs><marker id="arrow-cell" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#526273" /></marker></defs>
+      <rect class="cell" x="45" y="62" width="810" height="360" rx="42"/>
+      <text class="section" x="85" y="105">CARDIAC MYOCYTE</text>
+      <path class="membrane" d="M70 155H830"/><path class="t-tubule" d="M410 155V255Q410 275 430 275H470Q490 275 490 255V155"/>
+      <g class="channel"><rect x="422" y="139" width="56" height="34" rx="8"/><text x="450" y="134">L-type Ca²⁺</text></g>
+      <path class="edge calcium" marker-end="url(#arrow-cell)" d="M450 177V230"/><text class="ion" x="462" y="208">Ca²⁺ trigger</text>
+      <rect class="sr" x="170" y="285" width="560" height="72" rx="28"/><text x="450" y="329">Sarcoplasmic reticulum: Ca²⁺ store</text>
+      <g class="channel"><rect x="420" y="270" width="60" height="34" rx="8"/><text x="450" y="265">RyR2</text></g>
+      <path class="edge calcium" marker-end="url(#arrow-cell)" d="M450 266V214C450 200 420 198 390 220"/><text class="ion" x="300" y="210">larger Ca²⁺ release</text>
+      <g class="sarcomere"><path d="M95 245H335M565 245H805"/><path d="M110 218V272M320 218V272M580 218V272M790 218V272"/><path d="M150 230L210 245L150 260M280 230L220 245L280 260M620 230L680 245L620 260M750 230L690 245L750 260"/><text x="215" y="298">actin + myosin</text><text x="685" y="298">actin + myosin</text></g>
+      <path class="edge contract" marker-end="url(#arrow-cell)" d="M355 230H250"/><path class="edge contract" marker-end="url(#arrow-cell)" d="M545 230H650"/><text class="ion" x="450" y="246">contraction</text>
+      <path class="edge relax" marker-end="url(#arrow-cell)" d="M540 365C540 407 625 407 625 360"/><text class="ion" x="635" y="392">SERCA returns Ca²⁺</text>
+      <path class="edge relax" marker-end="url(#arrow-cell)" d="M730 230H815V145"/><text class="ion" x="748" y="212">NCX exports Ca²⁺</text>
+      <text class="note" x="450" y="468">Depolarization → Ca²⁺ entry → Ca²⁺ release → cross-bridge cycling → active Ca²⁺ removal</text>
+    </svg>
+  )}
+
+  {kind === 'action-potentials' && (
+    <svg viewBox="0 0 900 500" role="img" aria-label="Comparison of ventricular and nodal action potentials with dominant ion currents">
+      <defs><marker id="arrow-ap" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#526273" /></marker></defs>
+      <g class="axes"><path d="M90 390V80M90 390H420M500 390V80M500 390H830"/><text x="35" y="235" transform="rotate(-90 35 235)">membrane voltage</text><text x="255" y="425">time</text><text x="665" y="425">time</text></g>
+      <text class="section" x="255" y="56">VENTRICULAR / PURKINJE</text><text class="section" x="665" y="56">SA / AV NODE</text>
+      <path class="ap fast" d="M90 350H135L154 110L184 154L305 165Q350 170 375 350H420"/>
+      <path class="ap nodal" d="M500 350Q565 342 610 270L636 145Q662 112 700 165Q742 235 765 350Q790 340 830 270"/>
+      <g class="phase"><text x="141" y="100">0</text><text x="185" y="142">1</text><text x="268" y="151">2</text><text x="354" y="249">3</text><text x="110" y="376">4</text><text x="626" y="129">0</text><text x="728" y="243">3</text><text x="535" y="340">4</text></g>
+      <g class="pill sodium"><rect x="108" y="205" width="142" height="42" rx="21"/><text x="179" y="231">Na⁺ IN: rapid upstroke</text></g>
+      <g class="pill calcium"><rect x="222" y="96" width="160" height="42" rx="21"/><text x="302" y="122">Ca²⁺ IN: plateau</text></g>
+      <g class="pill potassium"><rect x="253" y="300" width="150" height="42" rx="21"/><text x="328" y="326">K⁺ OUT: reset</text></g>
+      <g class="pill calcium"><rect x="520" y="104" width="155" height="42" rx="21"/><text x="598" y="130">Ca²⁺ IN: upstroke</text></g>
+      <g class="pill funny"><rect x="518" y="286" width="148" height="42" rx="21"/><text x="592" y="312">If: automaticity</text></g>
+      <g class="pill potassium"><rect x="672" y="290" width="140" height="42" rx="21"/><text x="742" y="316">K⁺ OUT: reset</text></g>
+      <text class="note" x="255" y="466">Fast conduction • stable resting potential</text><text class="note" x="665" y="466">Slow conduction • spontaneous phase 4</text>
+    </svg>
+  )}
+
+  {kind === 'reentry' && (
+    <svg viewBox="0 0 900 450" role="img" aria-label="Stepwise diagram showing initiation and continuation of a reentry circuit">
+      <defs><marker id="arrow-re" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#526273" /></marker></defs>
+      <g transform="translate(35 65)"><text class="step" x="120" y="0">1 · TWO PATHWAYS</text><path class="tract fast" d="M45 55C45 120 90 165 120 200"/><path class="tract slow" d="M195 55C195 120 150 165 120 200"/><path class="edge" marker-end="url(#arrow-re)" d="M120 20V50"/><text class="tiny" x="18" y="134">fast / long refractory</text><text class="tiny" x="175" y="134">slow / short refractory</text><circle class="junction" cx="120" cy="210" r="13"/></g>
+      <g transform="translate(330 65)"><text class="step" x="120" y="0">2 · PREMATURE BEAT</text><path class="tract blocked" d="M45 55C45 120 90 165 120 200"/><path class="tract slow" d="M195 55C195 120 150 165 120 200"/><path class="edge" marker-end="url(#arrow-re)" d="M120 20V50"/><path class="block" d="M25 100L65 140M65 100L25 140"/><text class="tiny" x="25" y="162">blocked</text><text class="tiny" x="172" y="134">conducts slowly</text><circle class="junction" cx="120" cy="210" r="13"/></g>
+      <g transform="translate(625 65)"><text class="step" x="120" y="0">3 · LOOP SUSTAINS</text><path class="tract active" marker-end="url(#arrow-re)" d="M195 55C195 120 150 165 120 200C70 170 45 125 45 65"/><path class="edge" marker-end="url(#arrow-re)" d="M120 20V50"/><text class="tiny" x="7" y="134">fast path recovered</text><text class="tiny" x="166" y="134">down slow path</text><circle class="junction" cx="120" cy="210" r="13"/></g>
+      <rect class="callout" x="185" y="350" width="530" height="58" rx="16"/><text x="450" y="375">Therapeutic logic</text><text class="sub" x="450" y="396">interrupt the circuit by slowing conduction or prolonging refractoriness</text>
+    </svg>
+  )}
+
+  {kind === 'pv-loop' && (
+    <svg viewBox="0 0 900 540" role="img" aria-label="Left ventricular pressure volume loop with phases and valve events">
+      <defs><marker id="arrow-pv" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#526273" /></marker></defs>
+      <g class="axes"><path d="M120 430V70M120 430H780"/><text x="45" y="250" transform="rotate(-90 45 250)">LV pressure</text><text x="450" y="490">LV volume</text><text class="tiny" x="155" y="452">ESV</text><text class="tiny" x="690" y="452">EDV</text></g>
+      <path class="pv-fill" marker-end="url(#arrow-pv)" d="M200 400C350 425 560 420 700 375"/>
+      <path class="pv-iso" marker-end="url(#arrow-pv)" d="M700 375V150"/>
+      <path class="pv-eject" marker-end="url(#arrow-pv)" d="M700 150C590 75 345 85 200 205"/>
+      <path class="pv-iso" marker-end="url(#arrow-pv)" d="M200 205V400"/>
+      <g class="event"><circle cx="200" cy="400" r="8"/><text x="170" y="385">mitral opens</text><circle cx="700" cy="375" r="8"/><text x="720" y="382">mitral closes</text><circle cx="700" cy="150" r="8"/><text x="720" y="145">aortic opens</text><circle cx="200" cy="205" r="8"/><text x="125" y="190">aortic closes</text></g>
+      <g class="phase-label"><text x="430" y="398">FILLING</text><text x="715" y="275" transform="rotate(-90 715 275)">ISOVOLUMETRIC CONTRACTION</text><text x="440" y="115">EJECTION</text><text x="180" y="318" transform="rotate(-90 180 318)">ISOVOLUMETRIC RELAXATION</text></g>
+      <path class="measure" d="M205 465H695M205 458V472M695 458V472"/><text class="note" x="450" y="520">stroke volume = EDV − ESV</text>
+    </svg>
+  )}
+
+  <figcaption class="border-t border-clinical-200 px-5 py-4 text-sm leading-6 text-clinical-600 dark:border-clinical-700 dark:text-clinical-300">{info.caption}</figcaption>
+</figure>
+
+<style>
+  svg{display:block;width:100%;height:auto;padding:1rem;color:#263746;font-family:ui-sans-serif,system-ui,-apple-system,sans-serif}svg text{fill:#263746;text-anchor:middle;font-size:15px;font-weight:650}.sub{font-size:12px;font-weight:500;fill:#647382}.tiny{font-size:11px;font-weight:600;fill:#647382}.note{font-size:13px;font-weight:650;fill:#526273}.section,.step{font-size:13px;font-weight:800;letter-spacing:.08em;fill:#315f7d}.edges path,.edge{fill:none;stroke:#526273;stroke-width:3}.node rect{stroke-width:2}.node path{stroke:#fff;stroke-width:2}.venous rect,.right rect{fill:#dcecf1;stroke:#5b8292}.lungs rect{fill:#e6efe9;stroke:#699078}.left rect,.arterial rect{fill:#f4dfd9;stroke:#a76559}.valves text{font-size:10px;fill:#647382}.cell{fill:#fffdf8;stroke:#8997a2;stroke-width:2}.membrane,.t-tubule{fill:none;stroke:#a76559;stroke-width:7}.channel rect{fill:#f4dfd9;stroke:#a76559}.channel text{font-size:11px}.sr{fill:#dcecf1;stroke:#5b8292;stroke-width:2}.calcium{stroke:#3c78a8;stroke-width:3}.contract{stroke:#a76559;stroke-width:3}.relax{stroke:#699078;stroke-width:3}.ion{font-size:11px;fill:#526273}.sarcomere path{fill:none;stroke:#a76559;stroke-width:3}.sarcomere text{font-size:11px;fill:#647382}.axes path{fill:none;stroke:#8997a2;stroke-width:2}.axes text{font-size:12px;fill:#647382}.ap{fill:none;stroke-width:5}.fast{stroke:#a76559}.nodal{stroke:#315f7d}.phase text{font-size:12px;fill:#526273}.pill rect{stroke-width:1.5}.pill text{font-size:11px}.sodium rect{fill:#f4dfd9;stroke:#a76559}.calcium rect{fill:#dcecf1;stroke:#5b8292}.potassium rect{fill:#e6efe9;stroke:#699078}.funny rect{fill:#eee5d8;stroke:#8f7b60}.tract{fill:none;stroke-width:14;stroke-linecap:round}.tract.fast{stroke:#a76559}.tract.slow{stroke:#5b8292}.tract.blocked{stroke:#c9b2aa}.tract.active{stroke:#315f7d}.junction{fill:#eee5d8;stroke:#8f7b60;stroke-width:2}.block{stroke:#a33f39;stroke-width:5}.callout{fill:#eee5d8;stroke:#8f7b60}.callout text{font-size:14px}.callout .sub{font-size:12px}.pv-fill,.pv-eject,.pv-iso{fill:none;stroke-width:5}.pv-fill{stroke:#699078}.pv-iso{stroke:#8f7b60}.pv-eject{stroke:#a76559}.event circle{fill:#315f7d}.event text{font-size:11px;fill:#526273}.phase-label text{font-size:11px;font-weight:800;letter-spacing:.06em;fill:#526273}.measure{fill:none;stroke:#526273;stroke-width:2}
+  @media(max-width:640px){svg{padding:.25rem}svg text{font-size:13px}.tiny,.sub,.valves text,.channel text,.pill text,.event text,.phase-label text{font-size:9px}.note{font-size:10px}}
+</style>
