@@ -33,6 +33,20 @@
   /* Warm white for cards and elevated surfaces */
   --color-warm-white: #fdfaf4;
 
+  /* Cardiac accent. Existing blue utility classes inherit this system so
+     migrated teaching pages share one restrained visual language. */
+  --color-blue-50: #fff5f5;
+  --color-blue-100: #fee2e2;
+  --color-blue-200: #fecaca;
+  --color-blue-300: #fca5a5;
+  --color-blue-400: #f87171;
+  --color-blue-500: #b91c1c;
+  --color-blue-600: #991b1b;
+  --color-blue-700: #7f1d1d;
+  --color-blue-800: #641818;
+  --color-blue-900: #450a0a;
+  --color-blue-950: #260505;
+
   /* Clinical palette */
   --color-clinical-50: #f8f4ec;
   --color-clinical-100: #f0ead8;
@@ -71,9 +85,40 @@
     font-style: normal;
     font-display: swap;
   }
+
+  html { max-width: 100%; overflow-x: hidden; scroll-behavior: smooth; }
+  body { max-width: 100%; overflow-x: hidden; letter-spacing: -0.005em; }
+  ::selection { background: #fecaca; color: #450a0a; }
 }
 
 @layer components {
+  .cardiac-grid {
+    background-image:
+      linear-gradient(rgb(127 29 29 / 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(127 29 29 / 0.045) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .dark .cardiac-grid {
+    background-image:
+      linear-gradient(rgb(248 113 113 / 0.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(248 113 113 / 0.055) 1px, transparent 1px);
+  }
+
+  .clinical-card {
+    @apply rounded-2xl border border-clinical-200 bg-warm-white transition duration-200 dark:border-clinical-700 dark:bg-clinical-800;
+    box-shadow: 0 1px 2px rgb(15 23 42 / 0.03);
+  }
+
+  .clinical-card:hover {
+    border-color: rgb(127 29 29 / 0.55);
+    box-shadow: 0 16px 35px rgb(15 23 42 / 0.07);
+    transform: translateY(-2px);
+  }
+
+  .eyebrow {
+    @apply text-[0.68rem] font-bold uppercase tracking-[0.2em] text-blue-700 dark:text-blue-300;
+  }
   .home-hero {
     background:
       linear-gradient(90deg, color-mix(in srgb, var(--color-clinical-200) 42%, transparent) 1px, transparent 1px),

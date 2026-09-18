@@ -31,9 +31,9 @@ export default function CardiologySearch({ items }: { items: SearchItem[] }) {
   }, [items, normalized]);
 
   return (
-    <div class="relative">
+    <div class="relative w-full max-w-full">
       <label for="cardiology-search" class="sr-only">Search cardiology education</label>
-      <div class="flex items-center gap-3 rounded-xl border border-clinical-300 bg-white px-4 py-3 shadow-sm dark:border-clinical-600 dark:bg-clinical-800">
+      <div class="flex w-full max-w-full items-center gap-3 overflow-hidden rounded-xl border border-clinical-300 bg-white px-4 py-3 shadow-sm dark:border-clinical-600 dark:bg-clinical-800">
         <svg aria-hidden="true" viewBox="0 0 24 24" class="h-5 w-5 shrink-0 text-clinical-400" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" />
         </svg>
@@ -43,7 +43,7 @@ export default function CardiologySearch({ items }: { items: SearchItem[] }) {
           value={query}
           onInput={(event) => setQuery((event.currentTarget as HTMLInputElement).value)}
           placeholder="Search a symptom, finding, test, diagnosis, or guideline"
-          class="w-full bg-transparent text-base text-clinical-900 outline-none placeholder:text-clinical-400 dark:text-clinical-50"
+          class="min-w-0 w-full bg-transparent text-base text-clinical-900 outline-none placeholder:text-clinical-400 dark:text-clinical-50"
           autocomplete="off"
         />
       </div>
