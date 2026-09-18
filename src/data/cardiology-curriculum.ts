@@ -13,6 +13,7 @@ export type CardiologyLesson = {
   related?: { label: string; href: string }[];
   diagrams?: Array<'circulation' | 'myocyte' | 'action-potentials' | 'reentry' | 'pv-loop'>;
   clinicalDiagram?: 'heart-sounds' | 'murmur-maneuvers' | 'jvp' | 'profiles' | 'ecg-territories';
+  advancedDiagram?: 'bayes' | 'echo-windows' | 'biomarker-tree' | 'hemodynamics' | 'valve-load' | 'heart-failure-map' | 'af-map' | 'shock-map';
   learningModel?: {
     eli5: string;
     analogy: string;
@@ -76,7 +77,7 @@ export const cardiologyTracks: CardiologyTrack[] = [
         diagrams: ['myocyte', 'action-potentials', 'reentry'],
       },
       {
-        slug: 'probability-and-cardiac-testing', title: 'Probability before testing', level: 'Core',
+        slug: 'probability-and-cardiac-testing', title: 'Probability before testing', level: 'Core', advancedDiagram: 'bayes',
         dek: 'Choose tests by the question they can answer and the decision threshold they can cross.',
         mechanism: 'A test result changes probability according to its likelihood ratio and the pretest probability. Testing helps most in the intermediate zone: low probability invites false positives, while very high probability may justify treatment or definitive testing without an intermediate screen.',
         findings: ['Build the pretest estimate from symptoms, tempo, risk, examination, ECG, and prior studies.', 'Separate “Is disease present?” from “Is it causing this presentation?” and “Will defining it change management?”'],
@@ -175,7 +176,7 @@ export const cardiologyTracks: CardiologyTrack[] = [
         searchTerms: ['telemetry', 'artifact', 'monitoring', 'alarm', 'QT'],
       },
       {
-        slug: 'echocardiography-and-pocus', title: 'Echocardiography and cardiac POCUS', level: 'Core',
+        slug: 'echocardiography-and-pocus', title: 'Echocardiography and cardiac POCUS', level: 'Core', advancedDiagram: 'echo-windows',
         dek: 'Use ultrasound to answer a focused hemodynamic question without outrunning image quality.',
         mechanism: 'Two-dimensional imaging shows anatomy and motion; Doppler converts frequency shift into velocity; gradients are derived from velocity; chamber pressures are inferred through validated relationships with important assumptions.',
         findings: ['Assess global and regional LV function, RV size/function, pericardial fluid, gross valve pathology, and volume tolerance.', 'Interpret IVC findings cautiously in ventilation, pulmonary hypertension, severe TR, and elevated intra-abdominal pressure.'],
@@ -185,7 +186,7 @@ export const cardiologyTracks: CardiologyTrack[] = [
         searchTerms: ['echo', 'echocardiography', 'POCUS', 'Doppler', 'ejection fraction', 'IVC'],
       },
       {
-        slug: 'troponin-and-natriuretic-peptides', title: 'Troponin and natriuretic peptides', level: 'Core',
+        slug: 'troponin-and-natriuretic-peptides', title: 'Troponin and natriuretic peptides', level: 'Core', advancedDiagram: 'biomarker-tree',
         dek: 'Distinguish myocardial injury from infarction and wall stress from a heart-failure diagnosis.',
         mechanism: 'Troponin indicates myocardial injury; myocardial infarction additionally requires evidence of ischemia. BNP and NT-proBNP rise with myocardial wall stress but are modified by age, rhythm, renal function, body habitus, and treatment.',
         findings: ['Classify troponin as acute versus chronic from change over time, then ischemic versus nonischemic from the full presentation.', 'Use a low natriuretic peptide to argue against HF in the right setting; a high value needs explanation rather than automatic labeling.'],
@@ -196,7 +197,7 @@ export const cardiologyTracks: CardiologyTrack[] = [
         guidelineTopics: ['Universal definition of myocardial infarction', 'Chest pain', 'Heart failure'],
       },
       {
-        slug: 'invasive-hemodynamics', title: 'Invasive hemodynamics and waveforms', level: 'Advanced',
+        slug: 'invasive-hemodynamics', title: 'Invasive hemodynamics and waveforms', level: 'Advanced', advancedDiagram: 'hemodynamics',
         dek: 'Read pressures, saturations, and derived flow as one internally consistent story.',
         mechanism: 'Catheterization samples pressure and oxygen content at defined locations. Cardiac output is measured or estimated; resistance is a pressure gradient divided by flow. Waveform timing and morphology often reveal the lesion before a derived number does.',
         findings: ['Confirm transducer leveling, zeroing, respiratory phase, rhythm, and waveform fidelity.', 'Recognize ventricularization, equalization of diastolic pressures, prominent wedge v waves, discordant ventricular interaction, and pressure gradients.'],
@@ -216,7 +217,7 @@ export const cardiologyTracks: CardiologyTrack[] = [
     references: ['Current Diagnosis and Treatment: Cardiology, 5th ed. (Crawford)', 'The ESC Handbook of Preventive Cardiology', 'Hypertension, Oxford Cardiology Library, 3rd ed. (Nadar and Lip)', 'Case Reports in Cardiology: Valvular Heart Disease (Roberts)'],
     lessons: [
       {
-        slug: 'heart-failure', title: 'Heart failure', level: 'Core',
+        slug: 'heart-failure', title: 'Heart failure', level: 'Core', advancedDiagram: 'heart-failure-map',
         dek: 'Define the syndrome, phenotype the ventricle, find the cause, and treat congestion and long-term risk in parallel.',
         mechanism: 'Heart failure is a clinical syndrome caused by structural or functional cardiac abnormality with elevated filling pressures and/or inadequate output. EF phenotypes guide evidence-based therapy but do not replace etiologic diagnosis. Neurohormonal activation preserves perfusion short-term while driving sodium retention, vasoconstriction, and remodeling.',
         findings: ['Confirm congestion and/or hypoperfusion; identify precipitants such as ischemia, arrhythmia, infection, medication changes, and uncontrolled pressure.', 'Separate HFrEF, HFmrEF, HFimpEF, and HFpEF while evaluating ischemic, valvular, infiltrative, toxic, inflammatory, genetic, and tachycardia-mediated causes.'],
@@ -227,7 +228,7 @@ export const cardiologyTracks: CardiologyTrack[] = [
         guidelineTopics: ['Heart failure'],
       },
       {
-        slug: 'valvular-heart-disease', title: 'Valvular heart disease', level: 'Core',
+        slug: 'valvular-heart-disease', title: 'Valvular heart disease', level: 'Core', advancedDiagram: 'valve-load',
         dek: 'Integrate valve anatomy, lesion severity, ventricular response, symptoms, and timing of intervention.',
         mechanism: 'Stenosis creates a pressure load; regurgitation creates a volume load. Chronic compensation can preserve symptoms and EF until myocardial reserve is lost, while acute lesions can cause shock or pulmonary edema before dilation develops.',
         findings: ['Define valve, lesion, mechanism, severity, chamber consequence, pulmonary pressure, symptoms, and trajectory.', 'Discordance between examination, Doppler measures, chamber remodeling, and symptoms should trigger technical review and multimodality assessment.'],
@@ -238,7 +239,7 @@ export const cardiologyTracks: CardiologyTrack[] = [
         guidelineTopics: ['Valvular heart disease'],
       },
       {
-        slug: 'atrial-fibrillation', title: 'Atrial fibrillation', level: 'Core',
+        slug: 'atrial-fibrillation', title: 'Atrial fibrillation', level: 'Core', advancedDiagram: 'af-map',
         dek: 'Stabilize, prevent thromboembolism, control symptoms, and modify the substrate.',
         mechanism: 'AF combines triggers with an atrial substrate shaped by age, pressure, obesity, sleep apnea, alcohol, inflammation, and structural disease. Electrical and structural remodeling make AF progressively easier to sustain.',
         findings: ['Establish AF on an ECG-quality tracing and define first-diagnosed, paroxysmal, persistent, or permanent status.', 'Assess hemodynamic impact, symptom-rhythm correlation, duration, reversible drivers, structural disease, and stroke/bleeding risk.'],
@@ -389,7 +390,7 @@ export const cardiologyTracks: CardiologyTrack[] = [
         guidelineTopics: ['Atrial fibrillation', 'Ventricular arrhythmias and sudden cardiac death'],
       },
       {
-        slug: 'shock', title: 'Shock: phenotype before pressor', level: 'Core',
+        slug: 'shock', title: 'Shock: phenotype before pressor', level: 'Core', advancedDiagram: 'shock-map',
         dek: 'Recognize inadequate perfusion, identify the hemodynamic pattern, and treat cause and physiology together.',
         mechanism: 'Shock is inadequate oxygen delivery or utilization. Cardiac presentations may be cardiogenic, obstructive, distributive, hypovolemic, or mixed. Blood pressure is only one signal; compensatory vasoconstriction can temporarily preserve it despite falling output.',
         findings: ['Look for altered mentation, cool or mottled skin, oliguria, lactate rise, narrow pulse pressure, venous congestion, and respiratory distress.', 'Use history, examination, ECG, POCUS, and response to small interventions to phenotype LV, RV, obstructive, valvular, and distributive components.'],

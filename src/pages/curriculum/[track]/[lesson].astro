@@ -4,6 +4,7 @@ import Breadcrumb from '../../../components/Breadcrumb.astro';
 import CardiologyDiagram from '../../../components/CardiologyDiagram.astro';
 import LessonDeepDive from '../../../components/LessonDeepDive.astro';
 import ClinicalDiagram from '../../../components/ClinicalDiagram.astro';
+import AdvancedCardiologyDiagram from '../../../components/AdvancedCardiologyDiagram.astro';
 import LessonLearningLayers from '../../../components/LessonLearningLayers.astro';
 import guidelines from '../../../data/cardiology-guidelines.json';
 import { cardiologyTracks, type CardiologyLesson, type CardiologyTrack } from '../../../data/cardiology-curriculum';
@@ -51,6 +52,7 @@ const nejmReviews = lessonNejmReviews[lesson.slug] ?? [];
 
     {lesson.diagrams?.map((diagram) => <CardiologyDiagram kind={diagram} />)}
     {lesson.clinicalDiagram && <ClinicalDiagram kind={lesson.clinicalDiagram} />}
+    {lesson.advancedDiagram && <AdvancedCardiologyDiagram kind={lesson.advancedDiagram} />}
 
     {learningModel && <LessonLearningLayers model={learningModel} color={track.color} />}
 
