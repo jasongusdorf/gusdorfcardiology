@@ -1,0 +1,33 @@
+---
+import type { LessonMasterclass } from '../data/lesson-masterclasses';
+
+const { content, color } = Astro.props as { content: LessonMasterclass; color: string };
+const nodes = [
+  { label: 'Structure / substrate', title: content.foundations[0]?.title ?? 'Define the substrate' },
+  { label: 'Mechanism', title: content.foundations[1]?.title ?? content.foundations[0]?.title },
+  { label: 'Discriminator', title: content.reasoning[0]?.title ?? 'Recognize the pattern' },
+  { label: 'Decision', title: content.reasoning.at(-1)?.title ?? 'Act and reassess' },
+];
+---
+
+<figure class="my-8 overflow-hidden rounded-2xl border border-clinical-200 bg-white dark:border-clinical-700 dark:bg-clinical-800" aria-labelledby="concept-map-title">
+  <figcaption class="border-b border-clinical-200 px-5 py-4 dark:border-clinical-700">
+    <p class="text-xs font-bold uppercase tracking-[0.16em] text-blue-700 dark:text-blue-300">Mechanism map</p>
+    <h2 id="concept-map-title" class="mt-1 font-heading text-2xl font-semibold text-clinical-900 dark:text-white">How to reason from substrate to action</h2>
+  </figcaption>
+  <div class="grid gap-0 p-4 sm:grid-cols-4 sm:p-6">
+    {nodes.map((node, index) => (
+      <div class="relative flex min-h-28 items-center sm:block">
+        <div class="relative z-10 w-full rounded-xl border border-clinical-200 bg-clinical-50 p-4 dark:border-clinical-700 dark:bg-clinical-900">
+          <div class="mb-2 flex items-center gap-2">
+            <span class="grid h-6 w-6 shrink-0 place-items-center rounded-full text-xs font-bold text-white" style={`background:${color}`}>{index + 1}</span>
+            <span class="text-[0.68rem] font-bold uppercase tracking-wide text-clinical-500">{node.label}</span>
+          </div>
+          <p class="text-sm font-semibold leading-5 text-clinical-900 dark:text-white">{node.title}</p>
+        </div>
+        {index < nodes.length - 1 && <div class="grid h-8 w-8 shrink-0 place-items-center text-xl text-clinical-400 sm:absolute sm:-right-4 sm:top-10 sm:z-20" aria-hidden="true">→</div>}
+      </div>
+    ))}
+  </div>
+  <p class="border-t border-clinical-200 px-5 py-3 text-xs leading-5 text-clinical-500 dark:border-clinical-700 dark:text-clinical-400">Use the arrows as a causal test: if you cannot explain how one box produces the next, return to the mechanism before memorizing the management step.</p>
+</figure>

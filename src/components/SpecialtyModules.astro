@@ -1,0 +1,22 @@
+---
+import type { SpecialtyModule } from '../data/specialty-modules';
+const { modules } = Astro.props as { modules: SpecialtyModule[] };
+---
+<section class="my-9" aria-labelledby="specialty-modules-title">
+  <p class="text-xs font-bold uppercase tracking-[0.16em] text-blue-700 dark:text-blue-300">Subspecialty chapters</p>
+  <h2 id="specialty-modules-title" class="mt-1 font-heading text-2xl font-semibold text-clinical-900 dark:text-white">Do not stop at the survey label</h2>
+  <div class="mt-4 space-y-3">
+    {modules.map((module, index) => (
+      <details class="group rounded-xl border border-clinical-200 bg-white open:border-blue-300 dark:border-clinical-700 dark:bg-clinical-800 dark:open:border-blue-700" open={index === 0}>
+        <summary class="flex cursor-pointer list-none items-center justify-between gap-4 p-4 marker:content-none">
+          <span class="font-heading text-lg font-semibold text-clinical-900 dark:text-white">{module.title}</span><span class="text-xl text-blue-600 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+        </summary>
+        <div class="grid gap-4 border-t border-clinical-200 p-4 text-sm leading-7 dark:border-clinical-700 md:grid-cols-2">
+          <div><h3 class="font-semibold text-clinical-900 dark:text-white">Mechanism</h3><p class="mt-1 text-clinical-600 dark:text-clinical-300">{module.mechanism}</p></div>
+          <div><h3 class="font-semibold text-clinical-900 dark:text-white">Decision architecture</h3><p class="mt-1 text-clinical-600 dark:text-clinical-300">{module.decision}</p></div>
+          <p class="rounded-lg bg-amber-50 p-3 text-amber-950 dark:bg-amber-950/30 dark:text-amber-100 md:col-span-2"><strong>Clinical anchor:</strong> {module.anchor}</p>
+        </div>
+      </details>
+    ))}
+  </div>
+</section>
