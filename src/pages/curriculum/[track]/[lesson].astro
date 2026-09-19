@@ -6,10 +6,12 @@ import LessonDeepDive from '../../../components/LessonDeepDive.astro';
 import ClinicalDiagram from '../../../components/ClinicalDiagram.astro';
 import AdvancedCardiologyDiagram from '../../../components/AdvancedCardiologyDiagram.astro';
 import LessonLearningLayers from '../../../components/LessonLearningLayers.astro';
+import LessonMasterclass from '../../../components/LessonMasterclass.astro';
 import guidelines from '../../../data/cardiology-guidelines.json';
 import { cardiologyTracks, type CardiologyLesson, type CardiologyTrack } from '../../../data/cardiology-curriculum';
 import { lessonLearningModels, lessonNejmReviews } from '../../../data/lesson-learning-models';
 import { lessonEnhancements } from '../../../data/lesson-enhancements';
+import { lessonMasterclasses } from '../../../data/lesson-masterclasses';
 import katex from 'katex';
 import 'katex/dist/katex.min.css';
 
@@ -33,6 +35,10 @@ const renderFormula = (latex: string) => katex.renderToString(latex, {
 const sectionClass = 'rounded-xl border border-clinical-200 bg-warm-white p-5 dark:border-clinical-700 dark:bg-clinical-800';
 const learningModel = lessonLearningModels[lesson.slug];
 const nejmReviews = lessonNejmReviews[lesson.slug] ?? [];
+const masterclass = lessonMasterclasses[lesson.slug];
+const lessonIndex = track.lessons.findIndex((item) => item.slug === lesson.slug);
+const previousLesson = lessonIndex > 0 ? track.lessons[lessonIndex - 1] : undefined;
+const nextLesson = lessonIndex < track.lessons.length - 1 ? track.lessons[lessonIndex + 1] : undefined;
 ---
 
 <BaseLayout title={`${lesson.title} - Cardiology`} description={lesson.dek}>
@@ -63,23 +69,19 @@ const nejmReviews = lessonNejmReviews[lesson.slug] ?? [];
     {lesson.clinicalDiagram && <ClinicalDiagram kind={lesson.clinicalDiagram} />}
     {lesson.advancedDiagram && <AdvancedCardiologyDiagram kind={lesson.advancedDiagram} />}
 
-    {learningModel && <LessonLearningLayers model={learningModel} color={track.color} />}
-
-    <LessonDeepDive lesson={lesson} color={track.color} />
-
     {enhancements?.figures?.length && (
-      <section class="mb-5" aria-labelledby="visual-explainer-heading">
+      <section class="mb-8" aria-labelledby="visual-explainer-heading">
         <div class="mb-3 flex items-end justify-between gap-4">
           <div>
-            <p class="text-xs font-bold uppercase tracking-[0.16em] text-clinical-400">Visual explainer</p>
-            <h2 id="visual-explainer-heading" class="mt-1 font-heading text-2xl font-semibold text-clinical-900 dark:text-clinical-50">See the physiology</h2>
+            <p class="text-xs font-bold uppercase tracking-[0.16em] text-clinical-400">Visual atlas</p>
+            <h2 id="visual-explainer-heading" class="mt-1 font-heading text-2xl font-semibold text-clinical-900 dark:text-clinical-50">See the structure, then explain the physiology</h2>
           </div>
         </div>
         <div class="grid gap-5 md:grid-cols-2">
           {enhancements.figures.map((figure) => (
             <figure class="overflow-hidden rounded-xl border border-clinical-200 bg-white dark:border-clinical-700 dark:bg-clinical-800">
               <a href={figure.sourceUrl} target="_blank" rel="noreferrer" class="block bg-white">
-                <img src={figure.src} alt={figure.alt} loading="lazy" decoding="async" referrerpolicy="no-referrer" class="h-auto max-h-[32rem] w-full object-contain p-3" />
+                <img src={figure.src} alt={figure.alt} loading="lazy" decoding="async" referrerpolicy="no-referrer" class="h-auto max-h-[36rem] w-full object-contain p-3" />
               </a>
               <figcaption class="border-t border-clinical-200 p-4 text-sm leading-6 text-clinical-600 dark:border-clinical-700 dark:text-clinical-300">
                 <p>{figure.caption}</p>
@@ -90,6 +92,12 @@ const nejmReviews = lessonNejmReviews[lesson.slug] ?? [];
         </div>
       </section>
     )}
+
+    {learningModel && <LessonLearningLayers model={learningModel} color={track.color} />}
+
+    {masterclass && <LessonMasterclass content={masterclass} color={track.color} />}
+
+    <LessonDeepDive lesson={lesson} color={track.color} />
 
     {enhancements?.formulas?.length && (
       <section class={`${sectionClass} mb-5`} aria-labelledby="equations-heading">
@@ -180,8 +188,23 @@ const nejmReviews = lessonNejmReviews[lesson.slug] ?? [];
       </section>
 
     <footer class="mt-10 border-t border-clinical-200 pt-5 text-sm text-clinical-500 dark:border-clinical-700 dark:text-clinical-400">
-      <p>Evidence review: September 18, 2026. Educational material for clinicians. Verify recommendations against the linked current guideline and the patient’s circumstances.</p>
+      <p>Evidence review: September 19, 2026. Educational material for clinicians. Verify recommendations against the linked current guideline and the patient’s circumstances.</p>
       <p class="mt-2">Clinical peer review status: pending. This draft should not be represented as independently physician-reviewed until a named reviewer has approved it.</p>
     </footer>
+
+    <nav class="mt-8 grid gap-3 sm:grid-cols-2" aria-label="Lesson navigation">
+      {previousLesson ? (
+        <a href={`/curriculum/${track.slug}/${previousLesson.slug}`} class="rounded-xl border border-clinical-200 bg-white p-4 transition hover:border-blue-400 hover:shadow-sm dark:border-clinical-700 dark:bg-clinical-800">
+          <span class="text-xs font-bold uppercase tracking-wide text-clinical-400">← Previous</span>
+          <span class="mt-1 block font-semibold text-clinical-900 dark:text-white">{previousLesson.title}</span>
+        </a>
+      ) : <span />}
+      {nextLesson && (
+        <a href={`/curriculum/${track.slug}/${nextLesson.slug}`} class="rounded-xl border border-clinical-200 bg-white p-4 text-right transition hover:border-blue-400 hover:shadow-sm dark:border-clinical-700 dark:bg-clinical-800">
+          <span class="text-xs font-bold uppercase tracking-wide text-clinical-400">Next →</span>
+          <span class="mt-1 block font-semibold text-clinical-900 dark:text-white">{nextLesson.title}</span>
+        </a>
+      )}
+    </nav>
   </article>
 </BaseLayout>

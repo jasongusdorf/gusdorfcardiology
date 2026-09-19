@@ -36,14 +36,56 @@ const commons = (file: string) =>
  */
 export const lessonEnhancements: Record<string, LessonEnhancement> = {
   'cardiac-anatomy-and-flow': {
-    figures: [{
-      src: commons('5/5f/Circulation_of_blood_through_the_heart.png'),
-      alt: 'Diagram tracing systemic and pulmonary blood flow through the four chambers and great vessels',
-      caption: 'Trace the circuit in series: systemic veins → right heart → lungs → left heart → systemic arteries.',
-      credit: 'Christinelmiller, Wikimedia Commons',
-      sourceUrl: 'https://commons.wikimedia.org/wiki/File:Circulation_of_blood_through_the_heart.png',
-      license: 'CC BY-SA 4.0',
-    }],
+    figures: [
+      {
+        src: '/images/curriculum/anatomy/gross-heart-specimen.jpg',
+        alt: 'Gross anatomical heart specimen viewed from above with the aorta, pulmonary artery, vena cava, auricles, and pulmonary valve labeled',
+        caption: 'Gross superior–anterior orientation. First find the thick-walled aorta and anterior pulmonary trunk; the pulmonary valve sits at the RV outflow while the auricles flank the great vessels.',
+        credit: 'Dr. Jana, Wikimedia Commons',
+        sourceUrl: 'https://commons.wikimedia.org/wiki/File:Heart,_aorta_and_pulmonary_artery.jpg',
+        license: 'CC BY-SA 3.0',
+      },
+      {
+        src: '/images/curriculum/anatomy/heart-anterior.png',
+        alt: 'Detailed anterior anatomical illustration of the human heart and great vessels',
+        caption: 'Anterior surface anatomy. The right ventricle occupies most of the sternocostal surface; the LV forms the left border and apex. Use the interventricular groove to orient the ventricles and LAD.',
+        credit: 'xranatomy.com, Wikimedia Commons',
+        sourceUrl: 'https://commons.wikimedia.org/wiki/File:Anterior_surface_of_heart.png',
+        license: 'CC BY-SA 4.0',
+      },
+      {
+        src: '/images/curriculum/anatomy/heart-internal.jpg',
+        alt: 'Cutaway diagram of internal cardiac anatomy labeling chambers, septa, valves, chordae, papillary muscles, and great vessels',
+        caption: 'Internal architecture. Follow inflow → atrioventricular valve → trabeculated ventricle → semilunar valve. Compare the thin RV free wall with the thick LV and identify the chordal–papillary support apparatus.',
+        credit: 'OpenStax College, Wikimedia Commons',
+        sourceUrl: 'https://commons.wikimedia.org/wiki/File:2008_Internal_Anatomy_of_the_HeartN.jpg',
+        license: 'CC BY 3.0',
+      },
+      {
+        src: '/images/curriculum/anatomy/coronary-territories.jpg',
+        alt: 'Anterior and inferior cardiac surfaces colored by typical coronary artery perfusion territories',
+        caption: 'Coronary territories are probabilistic maps. Dominance and branch anatomy vary, so use the map to form a culprit hypothesis, then reconcile it with angiography and wall motion.',
+        credit: 'Patrick J. Lynch, medical illustrator, Wikimedia Commons',
+        sourceUrl: 'https://commons.wikimedia.org/wiki/File:Heart_coronary_territories.jpg',
+        license: 'CC BY 2.5',
+      },
+      {
+        src: '/images/curriculum/anatomy/conduction-system.jpg',
+        alt: 'Cardiac conduction system diagram showing SA node, internodal pathways, AV node, His bundle, bundle branches, and Purkinje fibers',
+        caption: 'Electrical anatomy. Physiologic AV-nodal delay permits filling; rapid His–Purkinje activation produces a narrow, coordinated QRS. Disease below the His bundle carries different implications from nodal delay.',
+        credit: 'OpenStax College, Wikimedia Commons',
+        sourceUrl: 'https://commons.wikimedia.org/wiki/File:2019_Cardiac_ConductionN.jpg',
+        license: 'CC BY 3.0',
+      },
+      {
+        src: commons('5/5f/Circulation_of_blood_through_the_heart.png'),
+        alt: 'Diagram tracing systemic and pulmonary blood flow through the four chambers and great vessels',
+        caption: 'Trace the circuit in series: systemic veins → right heart → lungs → left heart → systemic arteries. Then repeat the path while naming pressure changes and valve states.',
+        credit: 'Christinelmiller, Wikimedia Commons',
+        sourceUrl: 'https://commons.wikimedia.org/wiki/File:Circulation_of_blood_through_the_heart.png',
+        license: 'CC BY-SA 4.0',
+      },
+    ],
     formulas: [
       { name: 'Cardiac output', latex: String.raw`CO = HR \times SV`, interpretation: 'Flow per minute is heart rate multiplied by blood ejected per beat.', variables: 'CO L/min; HR beats/min; SV L/beat' },
       { name: 'Oxygen delivery', latex: String.raw`DO_2 = CO \times CaO_2 \times 10`, interpretation: 'Systemic oxygen delivery couples pump flow to arterial oxygen content.', variables: 'DO₂ mL/min; CO L/min; CaO₂ mL/dL' },

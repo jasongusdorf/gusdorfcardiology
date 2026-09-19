@@ -6,5 +6,7 @@ export default defineConfig({
   site: 'https://gusdorfcardiology.com',
   output: 'static',
   integrations: [preact()],
-  vite: { plugins: [tailwindcss()] },
+  // Astro and the Tailwind adapter currently bundle adjacent Vite versions;
+  // the runtime plugin API is compatible, but their duplicated type identities are not.
+  vite: { plugins: [tailwindcss() as any] },
 });
