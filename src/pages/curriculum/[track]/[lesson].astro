@@ -33,6 +33,12 @@ const matchingGuidelines = (guidelines as any[]).filter((guideline) =>
   lesson.guidelineTopics?.some((topic) => guideline.topic.toLowerCase().includes(topic.toLowerCase())),
 );
 const enhancements = lessonEnhancements[lesson.slug];
+// Generated atlas plates are temporarily withheld after the 2026-09-20
+// clinical audit. They remain in the repository for traceability, but are not
+// shown as teaching figures until each plate has an approved replacement.
+const auditedFigures = enhancements?.figures?.filter(
+  (figure) => !figure.src.startsWith('/images/curriculum/generated/'),
+);
 const renderFormula = (latex: string) => katex.renderToString(latex, {
   throwOnError: false,
   output: 'html',
@@ -88,7 +94,7 @@ const nextLesson = lessonIndex < track.lessons.length - 1 ? track.lessons[lesson
     {lesson.clinicalDiagram && <ClinicalDiagram kind={lesson.clinicalDiagram} />}
     {lesson.advancedDiagram && <AdvancedCardiologyDiagram kind={lesson.advancedDiagram} />}
 
-    {enhancements?.figures?.length && (
+    {auditedFigures?.length && (
       <section class="mb-8" aria-labelledby="visual-explainer-heading">
         <div class="mb-3 flex items-end justify-between gap-4">
           <div>
@@ -97,7 +103,7 @@ const nextLesson = lessonIndex < track.lessons.length - 1 ? track.lessons[lesson
           </div>
         </div>
         <div class="grid gap-5 md:grid-cols-2">
-          {enhancements.figures.map((figure) => (
+          {auditedFigures.map((figure) => (
             <figure class:list={[
               'overflow-hidden rounded-xl border border-clinical-200 bg-white dark:border-clinical-700 dark:bg-clinical-800',
               figure.wide && 'md:col-span-2',
