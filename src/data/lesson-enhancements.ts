@@ -148,6 +148,12 @@ export const lessonEnhancements: Record<string, LessonEnhancement> = {
     resources: [{ label: 'Cardiac action potentials', source: 'LITFL', href: 'https://litfl.com/cardiac-action-potentials/' }],
   },
   'probability-and-cardiac-testing': {
+    figures: [{
+      src: '/images/curriculum/generated/pretest-posttest-probability.png',
+      alt: 'Pretest probability spectrum, diagnostic test likelihood ratios, and post-test movement across testing and treatment thresholds',
+      caption: 'A test result moves probability; it does not create probability from nothing. Positive and negative likelihood ratios update the starting estimate, and the resulting post-test probability—not the result in isolation—drives the next threshold decision.',
+      credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/pretest-posttest-probability.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+    }],
     formulas: [
       { name: 'Odds form of Bayes', latex: String.raw`Posttest\ odds = Pretest\ odds \times LR`, interpretation: 'A likelihood ratio updates odds; it does not replace the pretest estimate.' },
       { name: 'Probability to odds', latex: String.raw`Odds = \frac{p}{1-p}`, interpretation: 'Convert probability to odds before applying a likelihood ratio.' },
@@ -214,12 +220,20 @@ export const lessonEnhancements: Record<string, LessonEnhancement> = {
     formulas: [{ name: 'Pulse pressure', latex: String.raw`PP = SBP - DBP`, interpretation: 'A narrow pulse pressure can be a bedside clue to low stroke volume, but arterial compliance and measurement conditions matter.' }],
   },
   'systematic-ecg-interpretation': {
-    figures: [{
-      src: '/images/curriculum/generated/ecg-territories-leads.png',
-      alt: 'Twelve-lead electrode positions and viewing vectors mapped to septal, anterior, lateral, inferior, posterior, and right-ventricular myocardial territories',
-      caption: 'Each ECG lead is a viewpoint, not a patch of myocardium. Group contiguous leads into spatial hypotheses, then remember that coronary supply varies with dominance and individual anatomy.',
-      credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/ecg-territories-leads.png', license: 'Gusdorf Cardiology · 2026', wide: true,
-    }],
+    figures: [
+      {
+        src: '/images/curriculum/generated/ecg-territories-leads.png',
+        alt: 'Twelve-lead electrode positions and viewing vectors mapped to septal, anterior, lateral, inferior, posterior, and right-ventricular myocardial territories',
+        caption: 'Each ECG lead is a viewpoint, not a patch of myocardium. Group contiguous leads into spatial hypotheses, then remember that coronary supply varies with dominance and individual anatomy.',
+        credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/ecg-territories-leads.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+      },
+      {
+        src: '/images/curriculum/generated/wide-complex-tachycardia-mechanisms.png',
+        alt: 'Matched cardiac activation maps comparing scar-mediated ventricular tachycardia, supraventricular tachycardia with bundle-branch aberrancy, and pre-excited tachycardia',
+        caption: 'A wide tachycardia can begin in ventricular myocardium, traverse the normal atrioventricular axis with aberrant distal conduction, or recruit an accessory pathway. Mechanism—not hemodynamic stability—determines the diagnosis.',
+        credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/wide-complex-tachycardia-mechanisms.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+      },
+    ],
     formulas: [
       { name: 'Rate from a regular rhythm', latex: String.raw`HR \approx \frac{300}{\text{large boxes between R waves}}`, interpretation: 'At 25 mm/s, the sequence is 300, 150, 100, 75, 60, 50.' },
       { name: 'Frontal QRS axis', latex: String.raw`Axis \approx \operatorname{atan2}(aVF, I)`, interpretation: 'The net QRS deflections in leads I and aVF define the quadrant; atan2 expresses the vector relationship.' },
@@ -242,6 +256,12 @@ export const lessonEnhancements: Record<string, LessonEnhancement> = {
         alt: 'Transparent thoracic anatomy linking parasternal, apical, subcostal, and suprasternal probe positions to standard echocardiographic views',
         caption: 'An echo view is an insonation plane through three-dimensional anatomy. Start with the probe position and beam path, then identify chambers by their relationships rather than memorized screen coordinates.',
         credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/echo-windows-anatomy.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+      },
+      {
+        src: '/images/curriculum/generated/diastolic-filling-echo.png',
+        alt: 'Normal versus elevated filling pressure with mitral E and A waves, tissue Doppler e-prime, left atrial size, and pulmonary venous flow',
+        caption: 'Diastolic assessment is a synthesis. Mitral inflow, annular relaxation velocity, atrial remodeling, pulmonary venous behavior, rhythm, and loading conditions must agree before assigning filling pressure.',
+        credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/diastolic-filling-echo.png', license: 'Gusdorf Cardiology · 2026', wide: true,
       },
       {
         src: commons('4/41/Doppler_mitral_valve.gif'),
@@ -281,12 +301,20 @@ export const lessonEnhancements: Record<string, LessonEnhancement> = {
     resources: [{ label: 'Pulmonary artery catheter waveforms', source: 'LITFL', href: 'https://litfl.com/pulmonary-artery-catheterisation/' }],
   },
   'heart-failure': {
-    figures: [{
-      src: '/images/curriculum/generated/heart-failure-remodeling.png',
-      alt: 'Matched normal, HFpEF, and HFrEF cardiac cutaways with short-axis geometry and pressure-volume loop comparisons',
-      caption: 'Heart failure phenotypes distort pressure, volume, and geometry differently. HFpEF commonly raises filling pressure in a stiff ventricle; HFrEF commonly shifts toward dilation, reduced emptying, and secondary mitral regurgitation.',
-      credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/heart-failure-remodeling.png', license: 'Gusdorf Cardiology · 2026', wide: true,
-    }],
+    figures: [
+      {
+        src: '/images/curriculum/generated/heart-failure-remodeling.png',
+        alt: 'Matched normal, HFpEF, and HFrEF cardiac cutaways with short-axis geometry and pressure-volume loop comparisons',
+        caption: 'Heart failure phenotypes distort pressure, volume, and geometry differently. HFpEF commonly raises filling pressure in a stiff ventricle; HFrEF commonly shifts toward dilation, reduced emptying, and secondary mitral regurgitation.',
+        credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/heart-failure-remodeling.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+      },
+      {
+        src: '/images/curriculum/generated/heart-failure-neurohormonal-therapy.png',
+        alt: 'Reduced cardiac output activating sympathetic and renin-angiotensin-aldosterone pathways, sodium retention, loading, remodeling, and four foundational HFrEF drug classes',
+        caption: 'HFrEF activates compensatory systems that become maladaptive: sympathetic tone, RAAS signaling, sodium retention, loading, and remodeling reinforce one another. Foundational therapies interrupt different nodes of that cycle rather than serving as interchangeable diuretics.',
+        credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/heart-failure-neurohormonal-therapy.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+      },
+    ],
     formulas: [{ name: 'Cardiac index', latex: String.raw`CI = \frac{CO}{BSA}`, interpretation: 'Indexes flow to body surface area; interpret beside perfusion rather than as an isolated cutoff.', variables: 'L/min/m²' }],
   },
   'valvular-heart-disease': {
@@ -302,6 +330,12 @@ export const lessonEnhancements: Record<string, LessonEnhancement> = {
         alt: 'Normal and calcific aortic valves with stenotic jet, concentric hypertrophy, Doppler alignment, continuity equation, and low-flow low-gradient physiology',
         caption: 'Aortic stenosis is valve morphology plus flow and ventricular response. Gradient rises with velocity, but low flow can hide severe obstruction; reconcile cusp motion, valve area, flow, gradient, and LV phenotype.',
         credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/aortic-stenosis-hemodynamics.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+      },
+      {
+        src: '/images/curriculum/generated/primary-secondary-mitral-regurgitation.png',
+        alt: 'Matched systolic cutaways comparing a flail leaflet and eccentric jet in primary mitral regurgitation with ventricular remodeling, tethering, annular dilation, and central regurgitation in secondary mitral regurgitation',
+        caption: 'Primary MR begins in the valve apparatus; secondary MR begins in ventricular or atrial geometry. The distinction changes what must be repaired: a diseased leaflet in one case, the forces pulling an otherwise intact valve apart in the other.',
+        credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/primary-secondary-mitral-regurgitation.png', license: 'Gusdorf Cardiology · 2026', wide: true,
       },
     ],
     formulas: [
@@ -329,25 +363,41 @@ export const lessonEnhancements: Record<string, LessonEnhancement> = {
     resources: [{ label: 'Atrial fibrillation ECG features', source: 'LITFL ECG Library', href: 'https://litfl.com/atrial-fibrillation-ecg-library/' }],
   },
   'acute-coronary-syndromes': {
-    figures: [{
-      src: '/images/curriculum/generated/endothelium-early-atherosclerosis.png',
-      alt: 'Longitudinal coronary artery cutaway comparing normal endothelial microanatomy with endothelial dysfunction, LDL retention, foam cells, and early eccentric plaque',
-      caption: 'Endothelium is a single-cell interface, not passive wallpaper. Loss of barrier and signaling function permits intimal lipid retention, leukocyte recruitment, foam-cell formation, and fibrous-cap remodeling long before the lumen tells the whole story.',
-      credit: 'AI-generated original medical illustration',
-      sourceUrl: '/images/curriculum/generated/endothelium-early-atherosclerosis.png',
-      license: 'Gusdorf Cardiology · 2026',
-      wide: true,
-    }],
+    figures: [
+      {
+        src: '/images/curriculum/generated/endothelium-early-atherosclerosis.png',
+        alt: 'Longitudinal coronary artery cutaway comparing normal endothelial microanatomy with endothelial dysfunction, LDL retention, foam cells, and early eccentric plaque',
+        caption: 'Endothelium is a single-cell interface, not passive wallpaper. Loss of barrier and signaling function permits intimal lipid retention, leukocyte recruitment, foam-cell formation, and fibrous-cap remodeling long before the lumen tells the whole story.',
+        credit: 'AI-generated original medical illustration',
+        sourceUrl: '/images/curriculum/generated/endothelium-early-atherosclerosis.png',
+        license: 'Gusdorf Cardiology · 2026',
+        wide: true,
+      },
+      {
+        src: '/images/curriculum/generated/plaque-rupture-coronary-thrombosis.png',
+        alt: 'Coronary artery sequence showing thin-cap plaque rupture, platelet adhesion and aggregation, fibrin propagation, partial or complete occlusion, and downstream myocardial ischemia',
+        caption: 'Acute coronary thrombosis begins when a thrombogenic plaque surface meets circulating platelets and coagulation. The resulting lumen compromise is dynamic; plaque burden, thrombus, vasomotion, and collateral flow all influence the clinical phenotype.',
+        credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/plaque-rupture-coronary-thrombosis.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+      },
+    ],
     formulas: [{ name: 'Fractional flow reserve', latex: String.raw`FFR = \frac{P_d}{P_a}\ \text{during maximal hyperemia}`, interpretation: 'A pressure ratio used to estimate whether an epicardial stenosis limits maximal flow; it is not a plaque-vulnerability test.' }],
     resources: [{ label: 'Myocardial ischaemia and infarction', source: 'LITFL ECG Library', href: 'https://litfl.com/myocardial-ischaemia-ecg-library/' }],
   },
   'cardiomyopathies': {
-    figures: [{
-      src: '/images/curriculum/generated/cardiomyopathy-phenotypes.png',
-      alt: 'Matched cutaway hearts comparing normal, dilated, hypertrophic, restrictive or infiltrative, arrhythmogenic right ventricular, and left ventricular noncompaction phenotypes',
-      caption: 'Morphology is an entry point, not an etiology. Use the phenotype to choose the next causal questions—pedigree, loading, ischemia, inflammation, infiltration, toxins, rhythm, and genetics.',
-      credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/cardiomyopathy-phenotypes.png', license: 'Gusdorf Cardiology · 2026', wide: true,
-    }],
+    figures: [
+      {
+        src: '/images/curriculum/generated/cardiomyopathy-phenotypes.png',
+        alt: 'Matched cutaway hearts comparing normal, dilated, hypertrophic, restrictive or infiltrative, arrhythmogenic right ventricular, and left ventricular noncompaction phenotypes',
+        caption: 'Morphology is an entry point, not an etiology. Use the phenotype to choose the next causal questions—pedigree, loading, ischemia, inflammation, infiltration, toxins, rhythm, and genetics.',
+        credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/cardiomyopathy-phenotypes.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+      },
+      {
+        src: '/images/curriculum/generated/hcm-dynamic-lvot-obstruction.png',
+        alt: 'Diastolic and systolic cutaways of hypertrophic cardiomyopathy showing asymmetric septal hypertrophy, systolic anterior mitral motion, dynamic LV outflow obstruction, and mitral regurgitation',
+        caption: 'Dynamic HCM obstruction emerges from geometry and loading: septal hypertrophy narrows the outflow tract, systolic anterior mitral motion narrows it further, and a smaller LV cavity can intensify the gradient and associated MR.',
+        credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/hcm-dynamic-lvot-obstruction.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+      },
+    ],
   },
   'pericardial-and-myocardial-inflammation': {
     figures: [{
@@ -370,6 +420,12 @@ export const lessonEnhancements: Record<string, LessonEnhancement> = {
     ],
   },
   'cardiovascular-pharmacology': {
+    figures: [{
+      src: '/images/curriculum/generated/cardiovascular-pharmacology-mechanisms.png',
+      alt: 'Heart, vessels, kidney, autonomic signaling, arterial platelet thrombus, and fibrin-rich clot mapped to major cardiovascular drug mechanisms',
+      caption: 'Cardiovascular drugs act on different compartments: pump, vascular tone, kidney, neurohormonal signaling, platelets, or coagulation. Naming the target prevents category errors—especially treating antiplatelet and anticoagulant therapy as interchangeable.',
+      credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/cardiovascular-pharmacology-mechanisms.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+    }],
     formulas: [{ name: 'Drug half-life', latex: String.raw`t_{1/2} = \frac{0.693\,V_d}{CL}`, interpretation: 'Volume of distribution and clearance determine the time course; organ dysfunction can therefore change accumulation.' }],
   },
   'coronary-angiography-and-pci': {
@@ -413,7 +469,21 @@ export const lessonEnhancements: Record<string, LessonEnhancement> = {
     formulas: [{ name: 'Posttest probability', latex: String.raw`p_{post} = \frac{LR\,p_{pre}}{1-p_{pre}+LR\,p_{pre}}`, interpretation: 'A direct probability form of Bayesian updating for one test result.' }],
   },
   'dyspnea-and-edema': {
+    figures: [{
+      src: '/images/curriculum/generated/dyspnea-pocus-differential.png',
+      alt: 'Bedside ultrasound comparison of diffuse B-lines, pleural effusion, focal pneumonia consolidation, right-ventricular strain, and a plethoric inferior vena cava',
+      caption: 'Dyspnea POCUS is a pattern-combination exercise. Diffuse B-lines, focal consolidation, pleural fluid, RV geometry, and venous congestion answer different questions; no single image should substitute for the clinical syndrome.',
+      credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/dyspnea-pocus-differential.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+    }],
     formulas: [{ name: 'Alveolar gas equation', latex: String.raw`P_{AO_2}=F_{IO_2}(P_B-P_{H_2O})-\frac{P_{aCO_2}}{R}`, interpretation: 'Useful when separating hypoventilation from V/Q mismatch or shunt in dyspnea.' }],
+  },
+  'palpitations-and-syncope': {
+    figures: [{
+      src: '/images/curriculum/generated/syncope-mechanisms.png',
+      alt: 'Reflex, orthostatic, arrhythmic, and structural syncope mechanisms converging on transient reduction in cerebral perfusion',
+      caption: 'Syncope is a final common pathway—transient global cerebral hypoperfusion—with several upstream mechanisms. History, position, rhythm, structural disease, and recovery pattern identify which route is most plausible.',
+      credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/syncope-mechanisms.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+    }],
   },
   'shock': {
     figures: [{
