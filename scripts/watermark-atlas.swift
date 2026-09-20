@@ -2,21 +2,14 @@
 
 import AppKit
 
-guard CommandLine.arguments.count == 3 || CommandLine.arguments.count == 5 else {
-  fputs("usage: watermark-atlas.swift INPUT OUTPUT [EXISTING_OPACITY NEW_OPACITY]\n", stderr)
+guard CommandLine.arguments.count == 3 else {
+  fputs("usage: watermark-atlas.swift CLEAN_INPUT OUTPUT\n", stderr)
   exit(64)
 }
 
 let input = CommandLine.arguments[1]
 let output = CommandLine.arguments[2]
-let existingOpacity = CommandLine.arguments.count == 5 ? Double(CommandLine.arguments[3]) : 0
-let newOpacity = CommandLine.arguments.count == 5 ? Double(CommandLine.arguments[4]) : 0.15
-
-guard let existingOpacity, let newOpacity,
-      (0...1).contains(existingOpacity), (0...1).contains(newOpacity) else {
-  fputs("opacities must be numbers from 0 through 1\n", stderr)
-  exit(64)
-}
+let newOpacity = 0.15
 
 guard let image = NSImage(contentsOfFile: input),
       let source = image.cgImage(forProposedRect: nil, context: nil, hints: nil) else {
@@ -61,47 +54,7 @@ func drawLabel(in target: CGContext, opacity: Double) {
 }
 
 context.draw(source, in: CGRect(x: 0, y: 0, width: width, height: height))
-
-if existingOpacity > 0 {
-  guard let maskContext = CGContext(
-    data: nil,
-    width: width,
-    height: height,
-    bitsPerComponent: 8,
-    bytesPerRow: width * 4,
-    space: CGColorSpaceCreateDeviceRGB(),
-    bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
-  ) else {
-    fputs("could not create watermark mask\n", stderr)
-    exit(70)
-  }
-  drawLabel(in: maskContext, opacity: 1)
-
-  guard let pixels = context.data?.assumingMemoryBound(to: UInt8.self),
-        let mask = maskContext.data?.assumingMemoryBound(to: UInt8.self) else {
-    fputs("could not access image pixels\n", stderr)
-    exit(70)
-  }
-
-  for y in 0..<height {
-    for x in 0..<width {
-      let offset = y * context.bytesPerRow + x * 4
-      let maskOffset = y * maskContext.bytesPerRow + x * 4
-      let coverage = Double(mask[maskOffset + 3]) / 255
-      if coverage == 0 { continue }
-      let oldAlpha = coverage * existingOpacity
-      let replacementAlpha = coverage * newOpacity
-      for channel in 0..<3 {
-        let observed = Double(pixels[offset + channel])
-        let original = (observed - 255 * oldAlpha) / (1 - oldAlpha)
-        let replacement = original * (1 - replacementAlpha) + 255 * replacementAlpha
-        pixels[offset + channel] = UInt8(max(0, min(255, replacement)).rounded())
-      }
-    }
-  }
-} else {
-  drawLabel(in: context, opacity: newOpacity)
-}
+drawLabel(in: context, opacity: newOpacity)
 
 guard let result = context.makeImage() else {
   fputs("could not create output image\n", stderr)
