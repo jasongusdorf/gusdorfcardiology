@@ -186,6 +186,18 @@ export const cardiologyTracks: CardiologyTrack[] = [
         searchTerms: ['echo', 'echocardiography', 'POCUS', 'Doppler', 'ejection fraction', 'IVC'],
       },
       {
+        slug: 'coronary-angiography-interpretation', title: 'Coronary angiography interpretation', level: 'Advanced',
+        dek: 'Translate rotating two-dimensional luminograms into three-dimensional coronary anatomy, lesion morphology, and flow.',
+        mechanism: 'Invasive coronary angiography records contrast within the arterial lumen as the X-ray source and detector rotate around the patient. RAO and LAO describe horizontal rotation; cranial and caudal describe vertical angulation. Every apparent narrowing is therefore a projection-dependent silhouette that must be localized, compared with reference segments, and confirmed in another view.',
+        findings: ['First name the injected system, projection, ostial engagement, dominance, and every major segment before describing disease.', 'Report vessel, segment, visual severity, lesion length and morphology, bifurcation involvement, calcification, thrombus or dissection clues, distal TIMI flow, collaterals, and myocardial blush.'],
+        testing: ['Use orthogonal projections to reduce overlap and foreshortening; choose caudal views for the left-main bifurcation and circumflex, cranial views for LAD, diagonals, and septals, and complementary RAO/LAO views for the RCA.', 'Use intracoronary imaging or coronary physiology when luminography cannot answer plaque architecture, vessel size, stent optimization, or lesion-specific functional significance.'],
+        management: ['Interpret the angiogram in the clinical frame: culprit occlusion, left-main or multivessel anatomy, stable intermediate disease, SCAD, spasm, embolism, ectasia, graft disease, and procedural complications demand different responses.', 'Urgent action follows threatened myocardium and instability; a visually impressive stable lesion is not automatically an indication for PCI.'],
+        pitfalls: ['Calling overlap or foreshortening a stenosis.', 'Missing ostial left-main disease because of deep catheter engagement or absent contrast reflux.', 'Treating percent narrowing as plaque biology or proof of ischemia.', 'Instrumenting suspected SCAD without recognizing long smooth tapering and the risk of propagation.'],
+        searchTerms: ['coronary angiography', 'RAO caudal', 'LAO caudal', 'spider view', 'TIMI flow', 'SCAD', 'coronary dominance'],
+        guidelineTopics: ['Coronary artery revascularization', 'Acute coronary syndromes', 'Chronic coronary disease'],
+        related: [{ label: 'Coronary angiography and PCI', href: '/curriculum/treatments-procedures/coronary-angiography-and-pci/' }, { label: 'Imaging interpretation center', href: '/imaging' }],
+      },
+      {
         slug: 'troponin-and-natriuretic-peptides', title: 'Troponin and natriuretic peptides', level: 'Core', advancedDiagram: 'biomarker-tree',
         dek: 'Distinguish myocardial injury from infarction and wall stress from a heart-failure diagnosis.',
         mechanism: 'Troponin indicates myocardial injury; myocardial infarction additionally requires evidence of ischemia. BNP and NT-proBNP rise with myocardial wall stress but are modified by age, rhythm, renal function, body habitus, and treatment.',

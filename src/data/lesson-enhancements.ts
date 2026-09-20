@@ -303,6 +303,80 @@ export const lessonEnhancements: Record<string, LessonEnhancement> = {
       { name: 'LV mass (ASE)', latex: String.raw`LVM = 0.8\{1.04[(IVS+LVID+PWT)^3-LVID^3]\}+0.6`, interpretation: 'A geometric estimate that is highly sensitive to measurement error because dimensions are cubed.', variables: 'Linear dimensions in cm; mass in g' },
     ],
   },
+  'coronary-angiography-interpretation': {
+    figures: [
+      {
+        src: '/images/curriculum/generated/angiography-carm-projections.png',
+        alt: 'C-arm rotating around a three-dimensional heart with RAO caudal, LAO caudal, RAO cranial, and LAO cranial left-coronary projections',
+        caption: 'Projection is the first diagnostic variable. RAO and LAO rotate around the patient; cranial and caudal tilt the beam. Caudal views open the left-main bifurcation and circumflex, while cranial views elongate the LAD and separate diagonals and septals.',
+        credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/angiography-carm-projections.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+      },
+      {
+        src: '/images/curriculum/generated/angiography-rca-projections.png',
+        alt: 'Three-dimensional right coronary artery anatomy paired with LAO and RAO angiographic projections and the definition of coronary dominance',
+        caption: 'Complementary RCA views turn a curved atrioventricular-groove vessel into interpretable segments. The LAO view profiles the ostium and proximal course; the RAO view better displays the mid/distal vessel, crux, PDA, and posterolateral branches.',
+        credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/angiography-rca-projections.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+      },
+      {
+        src: '/images/curriculum/generated/angiography-systematic-interpretation.png',
+        alt: 'Six-pass coronary angiography interpretation sequence covering engagement, dominance, segments, lesion severity, morphology, TIMI flow, collaterals, and blush',
+        caption: 'A reproducible read prevents tunnel vision: engagement and ostia → dominance and segments → lesion location and reference vessel → morphology → distal flow → collaterals and blush. Confirm every apparent lesion in another projection.',
+        credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/angiography-systematic-interpretation.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+      },
+      {
+        src: '/images/curriculum/generated/angiography-disease-patterns.png',
+        alt: 'Representative angiographic patterns of focal atherosclerosis, SCAD, thrombotic cutoff, epicardial spasm, ectasia or aneurysm, and myocardial bridging',
+        caption: 'Morphology narrows the differential but rarely proves mechanism alone. Focal shoulders suggest atherosclerosis; long smooth tapering suggests intramural hematoma; nitrate reversibility supports spasm; dynamic systolic compression supports bridging.',
+        credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/angiography-disease-patterns.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+      },
+      {
+        src: '/images/curriculum/angiography/normal-left-coronary.png',
+        alt: 'Open-license left coronary angiogram with unobstructed left main, LAD, circumflex, and branching vessels',
+        caption: 'Near-normal left-coronary reference. Begin at the left-main ostium, identify its bifurcation, then follow LAD and circumflex to their distal beds. Smooth caliber change and preserved distal opacification provide the comparison against which focal disease is judged.',
+        credit: 'Alextogus, Wikimedia Commons; representative frame extracted from source angiogram', sourceUrl: 'https://commons.wikimedia.org/wiki/File:Coronarographie_(cropped).gif', license: 'CC BY-SA 4.0',
+      },
+      {
+        src: '/images/curriculum/angiography/congenital-right-coronary.png',
+        alt: 'Open-license right coronary angiogram showing the RCA course and distal branches',
+        caption: 'Right-coronary orientation. Trace ostium → proximal → mid → distal vessel, identify acute marginals, then determine the artery supplying the PDA at the crux before assigning dominance.',
+        credit: 'Kenan Tiryakioglu et al., Wikimedia Commons; frame extracted from source angiogram', sourceUrl: 'https://commons.wikimedia.org/wiki/File:Left-Main-Coronary-Artery-Hypoplasia-in-Elderly-4156581.f1.ogv', license: 'CC BY 3.0',
+      },
+      {
+        src: '/images/curriculum/angiography/proximal-lad-stenosis.jpg',
+        alt: 'Coronary angiogram showing a severe focal proximal LAD stenosis after thrombus aspiration with distal branch opacification',
+        caption: 'Severe focal proximal LAD disease after thrombus aspiration. The short narrowed segment has a proximal reference and preserved distal opacification; the interpretation should still state segment, morphology, distal flow, and the clinical culprit context.',
+        credit: '6129bm, Wikimedia Commons', sourceUrl: 'https://commons.wikimedia.org/wiki/File:High_degree_stenosis_in_proximal_LAD.jpg', license: 'CC BY-SA 3.0',
+      },
+      {
+        src: '/images/curriculum/angiography/scad-lad-rao-caudal.png',
+        alt: 'RAO caudal coronary angiogram showing spontaneous dissection of the LAD with long smooth narrowing',
+        caption: 'SCAD in an RAO caudal projection. Long smooth tapering, caliber change, and distal vessel narrowing should raise intramural hematoma; a visible flap is not required. Intracoronary imaging can clarify uncertainty but instrumentation can propagate dissection.',
+        credit: 'Arnold J et al., Wikimedia Commons; frame extracted from source angiogram', sourceUrl: 'https://commons.wikimedia.org/wiki/File:The-role-of-Intravascular-Ultrasound-in-the-management-of-spontaneous-coronary-artery-dissection-1476-7120-6-24-S1.ogv', license: 'CC BY 2.0',
+      },
+      {
+        src: '/images/curriculum/angiography/rca-aneurysm-fistula.png',
+        alt: 'RAO right coronary angiogram showing a tortuous ectatic RCA terminating in an aneurysmal cavity associated with a coronary arteriovenous fistula',
+        caption: 'Tortuous ectatic RCA with aneurysmal termination in a fistulous pathway. This is not a focal stenosis problem: report the vessel course, caliber, drainage target, shunt implications, sluggish flow or thrombus risk, and the need for complementary anatomic imaging.',
+        credit: 'Milici C et al., Wikimedia Commons; frame extracted from source angiogram', sourceUrl: 'https://commons.wikimedia.org/wiki/File:A-Giant-Coronary-Artery-Aneurysm-with-Coronary-Arteriovenous-Fistula-in-Asymptomatic-Elderly-Patient-847972.f4.ogv', license: 'CC BY 3.0',
+      },
+      {
+        src: '/images/curriculum/angiography/critical-lad-pre-pci.png',
+        alt: 'Coronary angiography montage showing critical proximal LAD disease before PCI in a patient with a Wellens pattern',
+        caption: 'Critical proximal LAD disease in the clinical context of a Wellens ECG pattern. The angiogram localizes the lesion; the ECG supplies the threatened-myocardium context and urgency that a luminogram alone cannot.',
+        credit: 'Jer5150, Wikimedia Commons; representative frame extracted from source animation', sourceUrl: "https://commons.wikimedia.org/wiki/File:Wellens'_Warning.gif", license: 'CC BY-SA 3.0',
+      },
+      {
+        src: '/images/curriculum/angiography/critical-lad-post-pci.png',
+        alt: 'Coronary angiography montage after PCI of a critical proximal LAD lesion with restored lumen and distal filling',
+        caption: 'Post-PCI comparison. Judge the result by residual stenosis, edge injury, distal flow, side-branch preservation, and—when indicated—intravascular imaging, rather than by a single aesthetically improved projection.',
+        credit: 'Jer5150, Wikimedia Commons; representative frame extracted from source animation', sourceUrl: "https://commons.wikimedia.org/wiki/File:Wellens'_Warning.gif", license: 'CC BY-SA 3.0',
+      },
+    ],
+    resources: [
+      { label: 'Coronary angiography media category', source: 'Wikimedia Commons', href: 'https://commons.wikimedia.org/wiki/Category:Coronary_angiography' },
+      { label: 'Coronary artery anatomy and variants', source: 'University of Minnesota Atlas of Human Cardiac Anatomy', href: 'https://www.vhlab.umn.edu/atlas/coronary-arteries/' },
+    ],
+  },
   'troponin-and-natriuretic-peptides': {
     figures: [{
       src: '/images/curriculum/generated/cardiac-biomarkers.png',
