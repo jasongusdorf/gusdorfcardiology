@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+---
+
+<BaseLayout title="Editorial Standards - Gusdorf Cardiology" description="How Gusdorf Cardiology develops, reviews, sources, and updates its educational material.">
+  <article class="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
+    <Breadcrumb crumbs={[{ label: 'Home', href: '/' }, { label: 'Editorial standards' }]} />
+    <header class="mb-12 border-b border-clinical-200 pb-8 dark:border-clinical-700">
+      <p class="eyebrow">About the work</p>
+      <h1 class="mt-3 font-heading text-4xl font-semibold tracking-tight text-clinical-900 dark:text-white sm:text-5xl">Editorial standards</h1>
+      <p class="mt-5 text-lg leading-8 text-clinical-600 dark:text-clinical-300">How this site separates evidence, teaching synthesis, original illustration, and clinical review.</p>
+    </header>
+
+    <div class="space-y-10 leading-7 text-clinical-700 dark:text-clinical-200">
+      <section><h2 class="font-heading text-2xl font-semibold text-clinical-900 dark:text-white">Scope</h2><p class="mt-3">Gusdorf Cardiology is free education for clinicians and trainees. It explains mechanisms, interpretation, and management frameworks; it does not provide patient-specific medical advice or replace local protocols, current guidance, or clinical judgment.</p></section>
+      <section><h2 class="font-heading text-2xl font-semibold text-clinical-900 dark:text-white">Evidence and updates</h2><p class="mt-3">Lessons are built from major society guidelines, core cardiology references, primary literature, and canonical reviews. Each lesson shows its evidence-review date and links its principal guidelines and further reading. Recommendations can change; the dated review record makes that limitation visible without interrupting every lesson.</p></section>
+      <section><h2 class="font-heading text-2xl font-semibold text-clinical-900 dark:text-white">Clinical review</h2><p class="mt-3">Jason Gusdorf, MD, authors and maintains the curriculum. Material should not be described as independently peer-reviewed unless a named external reviewer has approved it. Independent review status will be stated explicitly when available.</p></section>
+      <section><h2 class="font-heading text-2xl font-semibold text-clinical-900 dark:text-white">Images and media</h2><p class="mt-3">Original atlas plates are identified as AI-generated medical illustrations and undergo clinical visual QA before publication. They are teaching aids, not validated procedural or surgical atlases. Third-party media retain creator, source, license, and modification records. Patient-identifiable material is not used.</p></section>
+      <section><h2 class="font-heading text-2xl font-semibold text-clinical-900 dark:text-white">Corrections</h2><p class="mt-3">Clinically meaningful errors are corrected promptly rather than silently defended. Questions or corrections can be sent through <a href="https://jasongusdorf.com" class="font-medium text-blue-700 underline underline-offset-2 dark:text-blue-300">Jason’s website</a>.</p></section>
+    </div>
+  </article>
+</BaseLayout>

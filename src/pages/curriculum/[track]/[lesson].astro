@@ -2,7 +2,6 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../../components/Breadcrumb.astro';
 import CardiologyDiagram from '../../../components/CardiologyDiagram.astro';
-import LessonDeepDive from '../../../components/LessonDeepDive.astro';
 import ClinicalDiagram from '../../../components/ClinicalDiagram.astro';
 import AdvancedCardiologyDiagram from '../../../components/AdvancedCardiologyDiagram.astro';
 import LessonLearningLayers from '../../../components/LessonLearningLayers.astro';
@@ -96,7 +95,7 @@ const nextLesson = lessonIndex < track.lessons.length - 1 ? track.lessons[lesson
               </a>
               <figcaption class="border-t border-clinical-200 p-4 text-sm leading-6 text-clinical-600 dark:border-clinical-700 dark:text-clinical-300">
                 <p>{figure.caption}</p>
-                <p class="mt-2 text-xs text-clinical-400"><a href={figure.sourceUrl} target="_blank" rel="noreferrer" class="underline decoration-clinical-300 underline-offset-2 hover:text-blue-600">{figure.credit}</a> · {figure.license}</p>
+                <p class="mt-2 text-[0.7rem] text-clinical-400"><a href={figure.sourceUrl} target="_blank" rel="noreferrer" class="underline decoration-clinical-200 underline-offset-2 hover:text-blue-600">{figure.credit}</a> · {figure.license}</p>
               </figcaption>
             </figure>
           ))}
@@ -111,8 +110,6 @@ const nextLesson = lessonIndex < track.lessons.length - 1 ? track.lessons[lesson
     {masterclass && <LessonMasterclass content={masterclass} color={track.color} />}
 
     {modules.length > 0 && <SpecialtyModules modules={modules} />}
-
-    <LessonDeepDive lesson={lesson} color={track.color} />
 
     {masteryQuestions.length > 0 && <LessonMastery slug={lesson.slug} questions={masteryQuestions} client:load />}
 
@@ -215,9 +212,8 @@ const nextLesson = lessonIndex < track.lessons.length - 1 ? track.lessons[lesson
         </div>
       </section>
 
-    <footer class="mt-10 border-t border-clinical-200 pt-5 text-sm text-clinical-500 dark:border-clinical-700 dark:text-clinical-400">
-      <p>Evidence review: September 19, 2026. Educational material for clinicians. Verify recommendations against the linked current guideline and the patient’s circumstances.</p>
-      <p class="mt-2">Clinical peer review status: pending. This draft should not be represented as independently physician-reviewed until a named reviewer has approved it.</p>
+    <footer class="mt-10 border-t border-clinical-200 pt-4 text-xs text-clinical-400 dark:border-clinical-700 dark:text-clinical-500">
+      <p>Evidence reviewed September 19, 2026 · <a href="/editorial-standards" class="underline underline-offset-2 hover:text-blue-600">Editorial standards and review status</a></p>
     </footer>
 
     <nav class="mt-8 grid gap-3 sm:grid-cols-2" aria-label="Lesson navigation">
