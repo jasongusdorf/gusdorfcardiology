@@ -154,20 +154,34 @@ export const lessonEnhancements: Record<string, LessonEnhancement> = {
     ],
   },
   'heart-sounds-and-splitting': {
+    figures: [{
+      src: '/images/curriculum/generated/heart-sounds-timing.png',
+      alt: 'Valve closures, auscultation areas, pressure tracings, ECG, and phonocardiogram aligned to S1, A2, P2, S3, and S4',
+      caption: 'Heart sounds are mechanical events placed on a pressure–time map. Time S1 and S2 to valve closure, then place splitting and extra sounds within systole or diastole before naming a lesion.',
+      credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/heart-sounds-timing.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+    }],
     resources: [
       { label: 'Heart sounds and murmurs', source: 'LITFL', href: 'https://litfl.com/heart-sounds-and-murmurs/' },
       { label: 'Harvey recordings on this site', source: 'Gusdorf Cardiology', href: '/heart-sounds' },
     ],
   },
   'murmurs-and-dynamic-maneuvers': {
-    figures: [{
-      src: commons('9/9e/Phonocardiogram_of_aortic_stenosis-HE.PNG'),
-      alt: 'Phonocardiogram showing the crescendo-decrescendo systolic murmur of aortic stenosis',
-      caption: 'The systolic envelope follows the changing LV–aortic gradient; later peaking often accompanies more severe obstruction.',
-      credit: 'Madhero88, Wikimedia Commons',
-      sourceUrl: 'https://commons.wikimedia.org/wiki/File:Phonocardiogram_of_aortic_stenosis-HE.PNG',
-      license: 'CC BY-SA 3.0',
-    }],
+    figures: [
+      {
+        src: '/images/curriculum/generated/murmur-maneuvers.png',
+        alt: 'Standing or Valsalva, squatting or leg raise, handgrip, and inspiration shown with their effects on preload, afterload, chamber size, and murmur intensity',
+        caption: 'Dynamic auscultation is a controlled perturbation: change venous return, afterload, or right-heart filling and predict how the responsible gradient or regurgitant flow should respond.',
+        credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/murmur-maneuvers.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+      },
+      {
+        src: commons('9/9e/Phonocardiogram_of_aortic_stenosis-HE.PNG'),
+        alt: 'Phonocardiogram showing the crescendo-decrescendo systolic murmur of aortic stenosis',
+        caption: 'The systolic envelope follows the changing LV–aortic gradient; later peaking often accompanies more severe obstruction.',
+        credit: 'Madhero88, Wikimedia Commons',
+        sourceUrl: 'https://commons.wikimedia.org/wiki/File:Phonocardiogram_of_aortic_stenosis-HE.PNG',
+        license: 'CC BY-SA 3.0',
+      },
+    ],
     formulas: [{ name: 'Simplified Bernoulli equation', latex: String.raw`\Delta P \approx 4v^2`, interpretation: 'Doppler velocity becomes an estimated instantaneous pressure gradient.', variables: 'ΔP mmHg; v m/s' }],
   },
   'jugular-venous-examination': {
@@ -191,9 +205,21 @@ export const lessonEnhancements: Record<string, LessonEnhancement> = {
     resources: [{ label: 'Central venous pressure waveform', source: 'LITFL', href: 'https://litfl.com/central-venous-pressure-cvp/' }],
   },
   'congestion-and-perfusion': {
+    figures: [{
+      src: '/images/curriculum/generated/congestion-perfusion-profiles.png',
+      alt: 'Warm-dry, warm-wet, cold-dry, and cold-wet bedside profiles arranged by independent congestion and perfusion axes',
+      caption: 'Congestion and perfusion are separate bedside axes. A patient can be wet yet warm, or dry yet cold; naming both dimensions is more useful than treating every heart-failure presentation as the same state.',
+      credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/congestion-perfusion-profiles.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+    }],
     formulas: [{ name: 'Pulse pressure', latex: String.raw`PP = SBP - DBP`, interpretation: 'A narrow pulse pressure can be a bedside clue to low stroke volume, but arterial compliance and measurement conditions matter.' }],
   },
   'systematic-ecg-interpretation': {
+    figures: [{
+      src: '/images/curriculum/generated/ecg-territories-leads.png',
+      alt: 'Twelve-lead electrode positions and viewing vectors mapped to septal, anterior, lateral, inferior, posterior, and right-ventricular myocardial territories',
+      caption: 'Each ECG lead is a viewpoint, not a patch of myocardium. Group contiguous leads into spatial hypotheses, then remember that coronary supply varies with dominance and individual anatomy.',
+      credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/ecg-territories-leads.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+    }],
     formulas: [
       { name: 'Rate from a regular rhythm', latex: String.raw`HR \approx \frac{300}{\text{large boxes between R waves}}`, interpretation: 'At 25 mm/s, the sequence is 300, 150, 100, 75, 60, 50.' },
       { name: 'Frontal QRS axis', latex: String.raw`Axis \approx \operatorname{atan2}(aVF, I)`, interpretation: 'The net QRS deflections in leads I and aVF define the quadrant; atan2 expresses the vector relationship.' },
@@ -201,6 +227,12 @@ export const lessonEnhancements: Record<string, LessonEnhancement> = {
     resources: [{ label: 'ECG basics', source: 'LITFL ECG Library', href: 'https://litfl.com/ecg-library/basics/' }],
   },
   'telemetry-and-artifact': {
+    figures: [{
+      src: '/images/curriculum/generated/telemetry-artifact.png',
+      alt: 'Telemetry electrode sources and monitor strips comparing true rhythm, motion, tremor, loose electrode, baseline wander, electrical interference, and polymorphic ventricular tachycardia',
+      caption: 'Artifact often leaves an organized QRS or pulse marching through the noise. A second lead and the patient’s pulse are parallel truth sources; true polymorphic VT should not preserve an orderly pleth waveform.',
+      credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/telemetry-artifact.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+    }],
     resources: [{ label: 'ECG artifact', source: 'LITFL ECG Library', href: 'https://litfl.com/ecg-artifact/' }],
   },
   'echocardiography-and-pocus': {
@@ -226,6 +258,12 @@ export const lessonEnhancements: Record<string, LessonEnhancement> = {
     ],
   },
   'troponin-and-natriuretic-peptides': {
+    figures: [{
+      src: '/images/curriculum/generated/cardiac-biomarkers.png',
+      alt: 'Cardiomyocyte troponin release, acute versus chronic serial troponin patterns, multiple injury mechanisms, and BNP or NT-proBNP generation from wall stress',
+      caption: 'Troponin establishes myocardial injury; serial change helps define acuity, while clinical evidence establishes mechanism. Natriuretic peptides report myocardial wall stress rather than a single diagnosis.',
+      credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/cardiac-biomarkers.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+    }],
     formulas: [{ name: 'Relative biomarker change', latex: String.raw`\Delta_{rel} = \frac{Value_2-Value_1}{Value_1}\times100\%`, interpretation: 'The clinically appropriate delta is assay- and pathway-specific; many algorithms use absolute rather than relative change.' }],
   },
   'invasive-hemodynamics': {
@@ -252,15 +290,20 @@ export const lessonEnhancements: Record<string, LessonEnhancement> = {
     formulas: [{ name: 'Cardiac index', latex: String.raw`CI = \frac{CO}{BSA}`, interpretation: 'Indexes flow to body surface area; interpret beside perfusion rather than as an isolated cutoff.', variables: 'L/min/m²' }],
   },
   'valvular-heart-disease': {
-    figures: [{
-      src: '/images/curriculum/generated/four-valve-anatomy.png',
-      alt: 'Superior oblique cardiac cutaway showing all four valves, the fibrous annuli, chordae, papillary muscles, coronary ostium, and aortic-mitral continuity',
-      caption: 'The four valves share a crowded fibrous neighborhood but use two different support systems: chordal–papillary restraint for the AV valves and free-standing cusps for the semilunar valves.',
-      credit: 'AI-generated original medical illustration',
-      sourceUrl: '/images/curriculum/generated/four-valve-anatomy.png',
-      license: 'Gusdorf Cardiology · 2026',
-      wide: true,
-    }],
+    figures: [
+      {
+        src: '/images/curriculum/generated/four-valve-anatomy.png',
+        alt: 'Superior oblique cardiac cutaway showing all four valves, the fibrous annuli, chordae, papillary muscles, coronary ostium, and aortic-mitral continuity',
+        caption: 'The four valves share a crowded fibrous neighborhood but use two different support systems: chordal–papillary restraint for the AV valves and free-standing cusps for the semilunar valves.',
+        credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/four-valve-anatomy.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+      },
+      {
+        src: '/images/curriculum/generated/aortic-stenosis-hemodynamics.png',
+        alt: 'Normal and calcific aortic valves with stenotic jet, concentric hypertrophy, Doppler alignment, continuity equation, and low-flow low-gradient physiology',
+        caption: 'Aortic stenosis is valve morphology plus flow and ventricular response. Gradient rises with velocity, but low flow can hide severe obstruction; reconcile cusp motion, valve area, flow, gradient, and LV phenotype.',
+        credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/aortic-stenosis-hemodynamics.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+      },
+    ],
     formulas: [
       { name: 'Aortic valve area', latex: String.raw`AVA = \frac{CSA_{LVOT}\times VTI_{LVOT}}{VTI_{AV}}`, interpretation: 'The continuity equation is vulnerable to LVOT diameter error, irregular rhythm, and poor Doppler alignment.' },
       { name: 'Mitral valve area by pressure half-time', latex: String.raw`MVA \approx \frac{220}{PHT}`, interpretation: 'Useful in selected mitral stenosis; unreliable when chamber compliance or flow changes materially.' },
@@ -352,15 +395,33 @@ export const lessonEnhancements: Record<string, LessonEnhancement> = {
     resources: [{ label: 'Pacemaker rhythms and troubleshooting', source: 'LITFL ECG Library', href: 'https://litfl.com/pacemaker-rhythms-normal-patterns/' }],
   },
   'cardioversion-and-ablation': {
+    figures: [{
+      src: '/images/curriculum/generated/cardioversion-af-ablation.png',
+      alt: 'Synchronized cardioversion pad vectors and R-wave synchronization beside transseptal pulmonary-vein isolation anatomy and safety landmarks',
+      caption: 'Cardioversion synchronizes energy to ventricular depolarization; AF ablation instead isolates atrial triggers at the pulmonary-vein antra. The procedures share a rhythm goal but act through different anatomy and timescales.',
+      credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/cardioversion-af-ablation.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+    }],
     formulas: [{ name: 'Electrical energy', latex: String.raw`E = \int V(t)I(t)\,dt`, interpretation: 'Delivered joules depend on the voltage–current waveform over time; pad position and transthoracic impedance affect current delivery.' }],
   },
   'chest-pain': {
+    figures: [{
+      src: '/images/curriculum/generated/dangerous-chest-pain.png',
+      alt: 'Thoracic anatomy and insets for acute coronary occlusion, aortic dissection, pulmonary embolism, tension pneumothorax, esophageal rupture, and tamponade',
+      caption: 'Dangerous chest pain crosses compartments. Symptoms overlap; localize the threatened anatomy—coronary artery, aortic wall, pulmonary artery, pleural space, pericardium, or esophagus—and choose the test that can see it.',
+      credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/dangerous-chest-pain.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+    }],
     formulas: [{ name: 'Posttest probability', latex: String.raw`p_{post} = \frac{LR\,p_{pre}}{1-p_{pre}+LR\,p_{pre}}`, interpretation: 'A direct probability form of Bayesian updating for one test result.' }],
   },
   'dyspnea-and-edema': {
     formulas: [{ name: 'Alveolar gas equation', latex: String.raw`P_{AO_2}=F_{IO_2}(P_B-P_{H_2O})-\frac{P_{aCO_2}}{R}`, interpretation: 'Useful when separating hypoventilation from V/Q mismatch or shunt in dyspnea.' }],
   },
   'shock': {
+    figures: [{
+      src: '/images/curriculum/generated/shock-phenotypes.png',
+      alt: 'Hypovolemic, cardiogenic, obstructive, and distributive shock phenotypes with compartment-specific hemodynamic patterns',
+      caption: 'Shock is inadequate tissue perfusion reached through different mechanisms. In obstruction, right-sided pressure may rise while LV filling falls—one reason a single undifferentiated “preload” label can mislead.',
+      credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/shock-phenotypes.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+    }],
     formulas: [
       { name: 'Mean arterial pressure', latex: String.raw`MAP \approx CO\times SVR + RAP`, interpretation: 'Pressure can be restored by flow, resistance, or both; the same MAP can hide very different shock physiology.' },
       { name: 'Shock index', latex: String.raw`SI = \frac{HR}{SBP}`, interpretation: 'A rapid screening ratio; trends and clinical context are more useful than a single universal threshold.' },
