@@ -110,6 +110,12 @@ export const lessonEnhancements: Record<string, LessonEnhancement> = {
         credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/pressure-volume-loop-atlas.png', license: 'Gusdorf Cardiology · 2026', wide: true,
       },
       {
+        src: '/images/curriculum/generated/preload-afterload-contractility.png',
+        alt: 'Matched pressure-volume loops showing the independent effects of increased preload, increased afterload, and increased contractility',
+        caption: 'Loading and contractility move the loop in different ways. Preload primarily raises end-diastolic volume, afterload raises systolic pressure and end-systolic volume, and greater contractility steepens the end-systolic relation while reducing end-systolic volume.',
+        credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/preload-afterload-contractility.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+      },
+      {
         src: commons('1/1c/Cardiac_Pressure_Volume_Loop.jpg'),
         alt: 'Left ventricular pressure-volume loop labeled with valve events and phases of the cardiac cycle',
         caption: 'Width is stroke volume; enclosed area approximates external stroke work. Move the loop—not just the EF—when reasoning about loading conditions.',
@@ -134,6 +140,12 @@ export const lessonEnhancements: Record<string, LessonEnhancement> = {
         sourceUrl: '/images/curriculum/generated/cardiac-conduction-anatomy.png',
         license: 'Gusdorf Cardiology · 2026',
         wide: true,
+      },
+      {
+        src: '/images/curriculum/generated/cardiac-action-potentials-drug-targets.png',
+        alt: 'Ventricular, Purkinje, atrial, and nodal action potentials with principal ionic currents and antiarrhythmic drug targets',
+        caption: 'Action potentials are tissue-specific. Fast-response myocardium and Purkinje tissue depend on a sodium-mediated phase 0, while nodal upstroke is calcium-mediated; antiarrhythmic effects therefore depend on current, tissue, phase, and rate.',
+        credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/cardiac-action-potentials-drug-targets.png', license: 'Gusdorf Cardiology · 2026', wide: true,
       },
       {
         src: commons('c/ce/Currents_responsible_for_the_cardiac_action_potential.png'),
@@ -211,12 +223,20 @@ export const lessonEnhancements: Record<string, LessonEnhancement> = {
     resources: [{ label: 'Central venous pressure waveform', source: 'LITFL', href: 'https://litfl.com/central-venous-pressure-cvp/' }],
   },
   'congestion-and-perfusion': {
-    figures: [{
-      src: '/images/curriculum/generated/congestion-perfusion-profiles.png',
-      alt: 'Warm-dry, warm-wet, cold-dry, and cold-wet bedside profiles arranged by independent congestion and perfusion axes',
-      caption: 'Congestion and perfusion are separate bedside axes. A patient can be wet yet warm, or dry yet cold; naming both dimensions is more useful than treating every heart-failure presentation as the same state.',
-      credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/congestion-perfusion-profiles.png', license: 'Gusdorf Cardiology · 2026', wide: true,
-    }],
+    figures: [
+      {
+        src: '/images/curriculum/generated/congestion-perfusion-profiles.png',
+        alt: 'Warm-dry, warm-wet, cold-dry, and cold-wet bedside profiles arranged by independent congestion and perfusion axes',
+        caption: 'Congestion and perfusion are separate bedside axes. A patient can be wet yet warm, or dry yet cold; naming both dimensions is more useful than treating every heart-failure presentation as the same state.',
+        credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/congestion-perfusion-profiles.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+      },
+      {
+        src: '/images/curriculum/generated/arterial-pulse-contours.png',
+        alt: 'Aortic and radial pulse anatomy with normal, parvus et tardus, water-hammer, bisferiens, alternans, and paradoxus pressure contours',
+        caption: 'The arterial pulse is a pressure waveform available at the bedside. Its upstroke, amplitude, contour, beat-to-beat behavior, and respiratory variation connect palpable findings to valve, ventricular, and pericardial physiology.',
+        credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/arterial-pulse-contours.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+      },
+    ],
     formulas: [{ name: 'Pulse pressure', latex: String.raw`PP = SBP - DBP`, interpretation: 'A narrow pulse pressure can be a bedside clue to low stroke volume, but arterial compliance and measurement conditions matter.' }],
   },
   'systematic-ecg-interpretation': {
@@ -262,6 +282,12 @@ export const lessonEnhancements: Record<string, LessonEnhancement> = {
         alt: 'Normal versus elevated filling pressure with mitral E and A waves, tissue Doppler e-prime, left atrial size, and pulmonary venous flow',
         caption: 'Diastolic assessment is a synthesis. Mitral inflow, annular relaxation velocity, atrial remodeling, pulmonary venous behavior, rhythm, and loading conditions must agree before assigning filling pressure.',
         credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/diastolic-filling-echo.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+      },
+      {
+        src: '/images/curriculum/generated/lv-systolic-function-imaging.png',
+        alt: 'Apical four-chamber anatomy with Simpson biplane end-diastolic and end-systolic volumes, ejection fraction, and global longitudinal strain',
+        caption: 'Systolic imaging asks more than one question. Simpson volumes quantify chamber emptying, while longitudinal strain can reveal abnormal myocardial deformation even when ejection fraction remains preserved.',
+        credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/lv-systolic-function-imaging.png', license: 'Gusdorf Cardiology · 2026', wide: true,
       },
       {
         src: commons('4/41/Doppler_mitral_valve.gif'),
@@ -397,47 +423,85 @@ export const lessonEnhancements: Record<string, LessonEnhancement> = {
         caption: 'Dynamic HCM obstruction emerges from geometry and loading: septal hypertrophy narrows the outflow tract, systolic anterior mitral motion narrows it further, and a smaller LV cavity can intensify the gradient and associated MR.',
         credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/hcm-dynamic-lvot-obstruction.png', license: 'Gusdorf Cardiology · 2026', wide: true,
       },
+      {
+        src: '/images/curriculum/generated/amyloidosis-sarcoidosis.png',
+        alt: 'Cardiac amyloidosis and sarcoidosis compared across anatomy, histology, ECG, echo, strain, CMR, and extracardiac clues',
+        caption: 'Infiltrative and inflammatory cardiomyopathies can share heart-failure, conduction, and arrhythmic presentations while leaving different tissue patterns. Anatomy, extracardiac clues, electrical disease, and multimodality imaging must be reconciled before assigning cause.',
+        credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/amyloidosis-sarcoidosis.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+      },
     ],
   },
   'pericardial-and-myocardial-inflammation': {
-    figures: [{
-      src: '/images/curriculum/generated/pericardium-tamponade.png',
-      alt: 'Layered fibrous and serous pericardial anatomy with effusion, chamber collapse, septal shift, venous congestion, and rising pericardial pressure in tamponade',
-      caption: 'Tamponade is pressure physiology, not an effusion-size diagnosis. As pericardial pressure approaches chamber diastolic pressure, right-sided collapse and ventricular interdependence impair filling and output.',
-      credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/pericardium-tamponade.png', license: 'Gusdorf Cardiology · 2026', wide: true,
-    }],
+    figures: [
+      {
+        src: '/images/curriculum/generated/pericardium-tamponade.png',
+        alt: 'Layered fibrous and serous pericardial anatomy with effusion, chamber collapse, septal shift, venous congestion, and rising pericardial pressure in tamponade',
+        caption: 'Tamponade is pressure physiology, not an effusion-size diagnosis. As pericardial pressure approaches chamber diastolic pressure, right-sided collapse and ventricular interdependence impair filling and output.',
+        credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/pericardium-tamponade.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+      },
+      {
+        src: '/images/curriculum/generated/cardiac-inflammation-spectrum.png',
+        alt: 'Matched hearts comparing pericarditis, myocarditis, myopericarditis, and constrictive pericarditis by tissue compartment',
+        caption: 'The injured compartment defines the syndrome: pericardial inflammation surrounds the heart, myocarditis involves muscle, overlap disease affects both, and chronic fibrosis can externally restrain diastolic filling.',
+        credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/cardiac-inflammation-spectrum.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+      },
+    ],
   },
   'pulmonary-hypertension-and-right-heart-failure': {
-    figures: [{
-      src: '/images/curriculum/generated/pulmonary-hypertension-rv-failure.png',
-      alt: 'Progression from normal circulation to compensated pulmonary pressure overload and decompensated right ventricular failure with pulmonary arteriolar remodeling',
-      caption: 'The RV first hypertrophies against increased afterload, then dilates and loses efficiency. Septal shift, functional TR, and venous congestion can reduce LV filling even when the primary pressure burden is pulmonary.',
-      credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/pulmonary-hypertension-rv-failure.png', license: 'Gusdorf Cardiology · 2026', wide: true,
-    }],
+    figures: [
+      {
+        src: '/images/curriculum/generated/pulmonary-hypertension-rv-failure.png',
+        alt: 'Progression from normal circulation to compensated pulmonary pressure overload and decompensated right ventricular failure with pulmonary arteriolar remodeling',
+        caption: 'The RV first hypertrophies against increased afterload, then dilates and loses efficiency. Septal shift, functional TR, and venous congestion can reduce LV filling even when the primary pressure burden is pulmonary.',
+        credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/pulmonary-hypertension-rv-failure.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+      },
+      {
+        src: '/images/curriculum/generated/cteph-progression-treatment.png',
+        alt: 'Progression from acute pulmonary embolism to organized thrombotic webs, mismatched perfusion defects, CTEPH, and right-heart failure with treatment options',
+        caption: 'CTEPH is not simply persistent fresh clot. Organized fibrotic obstruction, secondary small-vessel disease, and chronic RV pressure overload require expert operability assessment across surgery, balloon intervention, and medical therapy.',
+        credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/cteph-progression-treatment.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+      },
+    ],
     formulas: [
       { name: 'Pulmonary vascular resistance', latex: String.raw`PVR = \frac{mPAP-PAWP}{CO}`, interpretation: 'Separates the transpulmonary gradient from the flow traversing it.', variables: 'Wood units' },
       { name: 'Transpulmonary gradient', latex: String.raw`TPG = mPAP - PAWP`, interpretation: 'A pressure difference, not a resistance; it remains flow-dependent.' },
     ],
   },
   'cardiovascular-pharmacology': {
-    figures: [{
-      src: '/images/curriculum/generated/cardiovascular-pharmacology-mechanisms.png',
-      alt: 'Heart, vessels, kidney, autonomic signaling, arterial platelet thrombus, and fibrin-rich clot mapped to major cardiovascular drug mechanisms',
-      caption: 'Cardiovascular drugs act on different compartments: pump, vascular tone, kidney, neurohormonal signaling, platelets, or coagulation. Naming the target prevents category errors—especially treating antiplatelet and anticoagulant therapy as interchangeable.',
-      credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/cardiovascular-pharmacology-mechanisms.png', license: 'Gusdorf Cardiology · 2026', wide: true,
-    }],
+    figures: [
+      {
+        src: '/images/curriculum/generated/cardiovascular-pharmacology-mechanisms.png',
+        alt: 'Heart, vessels, kidney, autonomic signaling, arterial platelet thrombus, and fibrin-rich clot mapped to major cardiovascular drug mechanisms',
+        caption: 'Cardiovascular drugs act on different compartments: pump, vascular tone, kidney, neurohormonal signaling, platelets, or coagulation. Naming the target prevents category errors—especially treating antiplatelet and anticoagulant therapy as interchangeable.',
+        credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/cardiovascular-pharmacology-mechanisms.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+      },
+      {
+        src: '/images/curriculum/generated/antiplatelet-anticoagulant-mechanisms.png',
+        alt: 'Platelet-rich arterial thrombosis and fibrin-rich venous or intracardiac thrombosis with antiplatelet and anticoagulant drug targets',
+        caption: 'Antiplatelet drugs interrupt adhesion, activation, or aggregation in platelet-dominant arterial thrombosis; anticoagulants suppress factor Xa, thrombin, or fibrin generation. Real thrombi contain both systems, but the dominant mechanism guides therapy.',
+        credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/antiplatelet-anticoagulant-mechanisms.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+      },
+    ],
     formulas: [{ name: 'Drug half-life', latex: String.raw`t_{1/2} = \frac{0.693\,V_d}{CL}`, interpretation: 'Volume of distribution and clearance determine the time course; organ dysfunction can therefore change accumulation.' }],
   },
   'coronary-angiography-and-pci': {
-    figures: [{
-      src: '/images/curriculum/generated/angiography-ivus-pci.png',
-      alt: 'Three-panel comparison of coronary angiographic lumen silhouette, intravascular plaque cross-section, pressure wire, and a deployed coronary stent',
-      caption: 'One lesion, three questions: angiography outlines the contrast lumen, intravascular imaging reveals plaque and vessel wall, and PCI scaffolds the selected segment. Pressure physiology addresses functional significance rather than plaque composition.',
-      credit: 'AI-generated original medical illustration',
-      sourceUrl: '/images/curriculum/generated/angiography-ivus-pci.png',
-      license: 'Gusdorf Cardiology · 2026',
-      wide: true,
-    }],
+    figures: [
+      {
+        src: '/images/curriculum/generated/angiography-ivus-pci.png',
+        alt: 'Three-panel comparison of coronary angiographic lumen silhouette, intravascular plaque cross-section, pressure wire, and a deployed coronary stent',
+        caption: 'One lesion, three questions: angiography outlines the contrast lumen, intravascular imaging reveals plaque and vessel wall, and PCI scaffolds the selected segment. Pressure physiology addresses functional significance rather than plaque composition.',
+        credit: 'AI-generated original medical illustration',
+        sourceUrl: '/images/curriculum/generated/angiography-ivus-pci.png',
+        license: 'Gusdorf Cardiology · 2026',
+        wide: true,
+      },
+      {
+        src: '/images/curriculum/generated/coronary-pressure-flow-physiology.png',
+        alt: 'Pressure wire crossing a coronary stenosis with proximal and distal pressure waveforms for resting iFR and hyperemic FFR',
+        caption: 'Angiography estimates lumen narrowing; pressure physiology asks whether that narrowing creates a meaningful pressure loss under defined conditions. iFR samples a resting wave-free period, while FFR uses maximal hyperemia.',
+        credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/coronary-pressure-flow-physiology.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+      },
+    ],
     formulas: [{ name: 'Fractional flow reserve', latex: String.raw`FFR = \frac{P_d}{P_a}`, interpretation: 'Distal coronary pressure divided by aortic pressure during maximal hyperemia.' }],
   },
   'pacemakers-icds-and-crt': {
@@ -486,12 +550,20 @@ export const lessonEnhancements: Record<string, LessonEnhancement> = {
     }],
   },
   'shock': {
-    figures: [{
-      src: '/images/curriculum/generated/shock-phenotypes.png',
-      alt: 'Hypovolemic, cardiogenic, obstructive, and distributive shock phenotypes with compartment-specific hemodynamic patterns',
-      caption: 'Shock is inadequate tissue perfusion reached through different mechanisms. In obstruction, right-sided pressure may rise while LV filling falls—one reason a single undifferentiated “preload” label can mislead.',
-      credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/shock-phenotypes.png', license: 'Gusdorf Cardiology · 2026', wide: true,
-    }],
+    figures: [
+      {
+        src: '/images/curriculum/generated/shock-phenotypes.png',
+        alt: 'Hypovolemic, cardiogenic, obstructive, and distributive shock phenotypes with compartment-specific hemodynamic patterns',
+        caption: 'Shock is inadequate tissue perfusion reached through different mechanisms. In obstruction, right-sided pressure may rise while LV filling falls—one reason a single undifferentiated “preload” label can mislead.',
+        credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/shock-phenotypes.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+      },
+      {
+        src: '/images/curriculum/generated/mechanical-circulatory-support.png',
+        alt: 'Anatomical comparison of intra-aortic balloon pump, transvalvular left-ventricular support, and peripheral VA-ECMO',
+        caption: 'Support devices alter different parts of the circulation. IABP changes aortic timing, a transvalvular pump unloads the LV while adding forward flow, and peripheral VA-ECMO supplies systemic flow and gas exchange but can increase LV afterload.',
+        credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/mechanical-circulatory-support.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+      },
+    ],
     formulas: [
       { name: 'Mean arterial pressure', latex: String.raw`MAP \approx CO\times SVR + RAP`, interpretation: 'Pressure can be restored by flow, resistance, or both; the same MAP can hide very different shock physiology.' },
       { name: 'Shock index', latex: String.raw`SI = \frac{HR}{SBP}`, interpretation: 'A rapid screening ratio; trends and clinical context are more useful than a single universal threshold.' },
