@@ -102,14 +102,22 @@ export const lessonEnhancements: Record<string, LessonEnhancement> = {
     ],
   },
   'cardiac-cycle-and-pressure-volume-loops': {
-    figures: [{
-      src: commons('1/1c/Cardiac_Pressure_Volume_Loop.jpg'),
-      alt: 'Left ventricular pressure-volume loop labeled with valve events and phases of the cardiac cycle',
-      caption: 'Width is stroke volume; enclosed area approximates external stroke work. Move the loop—not just the EF—when reasoning about loading conditions.',
-      credit: 'Andyhenton83, Wikimedia Commons',
-      sourceUrl: 'https://commons.wikimedia.org/wiki/File:Cardiac_Pressure_Volume_Loop.jpg',
-      license: 'CC BY-SA 3.0',
-    }],
+    figures: [
+      {
+        src: '/images/curriculum/generated/pressure-volume-loop-atlas.png',
+        alt: 'Counterclockwise left ventricular pressure-volume loop connected to cutaway hearts showing valve state during filling, isovolumetric contraction, ejection, and isovolumetric relaxation',
+        caption: 'The loop is a cardiac cycle drawn in pressure–volume space: fill rightward, contract upward at fixed volume, eject leftward, then relax downward at fixed volume. Each corner is a valve event.',
+        credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/pressure-volume-loop-atlas.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+      },
+      {
+        src: commons('1/1c/Cardiac_Pressure_Volume_Loop.jpg'),
+        alt: 'Left ventricular pressure-volume loop labeled with valve events and phases of the cardiac cycle',
+        caption: 'Width is stroke volume; enclosed area approximates external stroke work. Move the loop—not just the EF—when reasoning about loading conditions.',
+        credit: 'Andyhenton83, Wikimedia Commons',
+        sourceUrl: 'https://commons.wikimedia.org/wiki/File:Cardiac_Pressure_Volume_Loop.jpg',
+        license: 'CC BY-SA 3.0',
+      },
+    ],
     formulas: [
       { name: 'Stroke volume', latex: String.raw`SV = EDV - ESV`, interpretation: 'The horizontal width of the pressure-volume loop.', variables: 'Volumes in mL' },
       { name: 'Ejection fraction', latex: String.raw`EF = \frac{EDV-ESV}{EDV} \times 100\%`, interpretation: 'A ratio of chamber emptying—not a direct measure of contractility.' },
@@ -163,14 +171,22 @@ export const lessonEnhancements: Record<string, LessonEnhancement> = {
     formulas: [{ name: 'Simplified Bernoulli equation', latex: String.raw`\Delta P \approx 4v^2`, interpretation: 'Doppler velocity becomes an estimated instantaneous pressure gradient.', variables: 'ΔP mmHg; v m/s' }],
   },
   'jugular-venous-examination': {
-    figures: [{
-      src: commons('2/25/Wiggers_diagram_with_jugular_venous_waveform.png'),
-      alt: 'Wiggers diagram aligning jugular venous waves with ECG, heart sounds, and chamber pressures',
-      caption: 'Time each venous wave to atrial contraction, tricuspid motion, atrial filling, and early ventricular filling.',
-      credit: 'Nootherone321, Wikimedia Commons',
-      sourceUrl: 'https://commons.wikimedia.org/wiki/File:Wiggers_diagram_with_jugular_venous_waveform.png',
-      license: 'CC BY-SA 4.0',
-    }],
+    figures: [
+      {
+        src: '/images/curriculum/generated/jvp-anatomy-waveform.png',
+        alt: 'Reclined patient with internal and external jugular anatomy, vertical JVP measurement, and right atrial events aligned to a, c, and v waves and x and y descents',
+        caption: 'Read the neck as a remote right-atrial pressure tracing. Measure vertically above the sternal angle, then time each wave to the atrial and tricuspid event that creates it.',
+        credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/jvp-anatomy-waveform.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+      },
+      {
+        src: commons('2/25/Wiggers_diagram_with_jugular_venous_waveform.png'),
+        alt: 'Wiggers diagram aligning jugular venous waves with ECG, heart sounds, and chamber pressures',
+        caption: 'Time each venous wave to atrial contraction, tricuspid motion, atrial filling, and early ventricular filling.',
+        credit: 'Nootherone321, Wikimedia Commons',
+        sourceUrl: 'https://commons.wikimedia.org/wiki/File:Wiggers_diagram_with_jugular_venous_waveform.png',
+        license: 'CC BY-SA 4.0',
+      },
+    ],
     formulas: [{ name: 'Estimated right atrial pressure', latex: String.raw`RAP \approx h_{JVP} + 5\ \text{cm H}_2\text{O}`, interpretation: 'Add roughly 5 cm for the vertical distance from the sternal angle to the right atrium.', variables: 'hJVP is vertical height above the sternal angle' }],
     resources: [{ label: 'Central venous pressure waveform', source: 'LITFL', href: 'https://litfl.com/central-venous-pressure-cvp/' }],
   },
@@ -188,14 +204,22 @@ export const lessonEnhancements: Record<string, LessonEnhancement> = {
     resources: [{ label: 'ECG artifact', source: 'LITFL ECG Library', href: 'https://litfl.com/ecg-artifact/' }],
   },
   'echocardiography-and-pocus': {
-    figures: [{
-      src: commons('4/41/Doppler_mitral_valve.gif'),
-      alt: 'Animated Doppler echocardiography view across the mitral valve',
-      caption: 'Doppler samples velocity along the ultrasound beam; alignment error systematically underestimates velocity and derived gradients.',
-      credit: 'Kalumet, Wikimedia Commons',
-      sourceUrl: 'https://commons.wikimedia.org/wiki/File:Doppler_mitral_valve.gif',
-      license: 'CC BY-SA 3.0',
-    }],
+    figures: [
+      {
+        src: '/images/curriculum/generated/echo-windows-anatomy.png',
+        alt: 'Transparent thoracic anatomy linking parasternal, apical, subcostal, and suprasternal probe positions to standard echocardiographic views',
+        caption: 'An echo view is an insonation plane through three-dimensional anatomy. Start with the probe position and beam path, then identify chambers by their relationships rather than memorized screen coordinates.',
+        credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/echo-windows-anatomy.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+      },
+      {
+        src: commons('4/41/Doppler_mitral_valve.gif'),
+        alt: 'Animated Doppler echocardiography view across the mitral valve',
+        caption: 'Doppler samples velocity along the ultrasound beam; alignment error systematically underestimates velocity and derived gradients.',
+        credit: 'Kalumet, Wikimedia Commons',
+        sourceUrl: 'https://commons.wikimedia.org/wiki/File:Doppler_mitral_valve.gif',
+        license: 'CC BY-SA 3.0',
+      },
+    ],
     formulas: [
       { name: 'Continuity equation', latex: String.raw`A_1v_1 = A_2v_2`, interpretation: 'Conservation of flow allows valve area to be derived from upstream area and velocity-time integrals.' },
       { name: 'LV mass (ASE)', latex: String.raw`LVM = 0.8\{1.04[(IVS+LVID+PWT)^3-LVID^3]\}+0.6`, interpretation: 'A geometric estimate that is highly sensitive to measurement error because dimensions are cubed.', variables: 'Linear dimensions in cm; mass in g' },
@@ -205,6 +229,12 @@ export const lessonEnhancements: Record<string, LessonEnhancement> = {
     formulas: [{ name: 'Relative biomarker change', latex: String.raw`\Delta_{rel} = \frac{Value_2-Value_1}{Value_1}\times100\%`, interpretation: 'The clinically appropriate delta is assay- and pathway-specific; many algorithms use absolute rather than relative change.' }],
   },
   'invasive-hemodynamics': {
+    figures: [{
+      src: '/images/curriculum/generated/right-heart-catheterization.png',
+      alt: 'Balloon-tipped pulmonary artery catheter traversing the right heart with right atrial, right ventricular, pulmonary artery, and wedge pressure waveforms',
+      caption: 'The catheter changes waveform as it crosses each chamber and valve. A wedge is a distal pulmonary-artery occlusion measurement that estimates downstream left-atrial pressure only when the tracing and position are valid.',
+      credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/right-heart-catheterization.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+    }],
     formulas: [
       { name: 'Fick cardiac output', latex: String.raw`CO = \frac{\dot V O_2}{CaO_2-CvO_2}`, interpretation: 'Flow equals oxygen consumption divided by the arteriovenous oxygen-content difference.' },
       { name: 'Systemic vascular resistance', latex: String.raw`SVR = 80\,\frac{MAP-RAP}{CO}`, interpretation: 'Resistance is the systemic pressure gradient divided by flow.', variables: 'dyn·s·cm⁻⁵' },
@@ -213,6 +243,12 @@ export const lessonEnhancements: Record<string, LessonEnhancement> = {
     resources: [{ label: 'Pulmonary artery catheter waveforms', source: 'LITFL', href: 'https://litfl.com/pulmonary-artery-catheterisation/' }],
   },
   'heart-failure': {
+    figures: [{
+      src: '/images/curriculum/generated/heart-failure-remodeling.png',
+      alt: 'Matched normal, HFpEF, and HFrEF cardiac cutaways with short-axis geometry and pressure-volume loop comparisons',
+      caption: 'Heart failure phenotypes distort pressure, volume, and geometry differently. HFpEF commonly raises filling pressure in a stiff ventricle; HFrEF commonly shifts toward dilation, reduced emptying, and secondary mitral regurgitation.',
+      credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/heart-failure-remodeling.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+    }],
     formulas: [{ name: 'Cardiac index', latex: String.raw`CI = \frac{CO}{BSA}`, interpretation: 'Indexes flow to body surface area; interpret beside perfusion rather than as an isolated cutoff.', variables: 'L/min/m²' }],
   },
   'valvular-heart-disease': {
@@ -231,14 +267,22 @@ export const lessonEnhancements: Record<string, LessonEnhancement> = {
     ],
   },
   'atrial-fibrillation': {
-    figures: [{
-      src: commons('4/43/ECG_Atrial_Fibrillation_90_bpm.jpg'),
-      alt: 'Twelve-lead ECG showing atrial fibrillation with an irregular ventricular response',
-      caption: 'Confirm irregularly irregular R–R intervals and absence of organized, repetitive P waves on an ECG-quality tracing.',
-      credit: 'Ewingdo, Wikimedia Commons',
-      sourceUrl: 'https://commons.wikimedia.org/wiki/File:ECG_Atrial_Fibrillation_90_bpm.jpg',
-      license: 'CC BY-SA 4.0',
-    }],
+    figures: [
+      {
+        src: '/images/curriculum/generated/af-left-atrial-appendage.png',
+        alt: 'Posterior left atrial cutaway showing pulmonary vein triggers, atrial fibrosis, left atrial appendage pectinate muscles, and appendage thrombus',
+        caption: 'AF is both an electrical and thrombotic disease: pulmonary-vein triggers meet a remodeled atrium, while stasis and appendage anatomy create a protected niche for thrombus.',
+        credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/af-left-atrial-appendage.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+      },
+      {
+        src: commons('4/43/ECG_Atrial_Fibrillation_90_bpm.jpg'),
+        alt: 'Twelve-lead ECG showing atrial fibrillation with an irregular ventricular response',
+        caption: 'Confirm irregularly irregular R–R intervals and absence of organized, repetitive P waves on an ECG-quality tracing.',
+        credit: 'Ewingdo, Wikimedia Commons',
+        sourceUrl: 'https://commons.wikimedia.org/wiki/File:ECG_Atrial_Fibrillation_90_bpm.jpg',
+        license: 'CC BY-SA 4.0',
+      },
+    ],
     resources: [{ label: 'Atrial fibrillation ECG features', source: 'LITFL ECG Library', href: 'https://litfl.com/atrial-fibrillation-ecg-library/' }],
   },
   'acute-coronary-syndromes': {
@@ -254,7 +298,29 @@ export const lessonEnhancements: Record<string, LessonEnhancement> = {
     formulas: [{ name: 'Fractional flow reserve', latex: String.raw`FFR = \frac{P_d}{P_a}\ \text{during maximal hyperemia}`, interpretation: 'A pressure ratio used to estimate whether an epicardial stenosis limits maximal flow; it is not a plaque-vulnerability test.' }],
     resources: [{ label: 'Myocardial ischaemia and infarction', source: 'LITFL ECG Library', href: 'https://litfl.com/myocardial-ischaemia-ecg-library/' }],
   },
+  'cardiomyopathies': {
+    figures: [{
+      src: '/images/curriculum/generated/cardiomyopathy-phenotypes.png',
+      alt: 'Matched cutaway hearts comparing normal, dilated, hypertrophic, restrictive or infiltrative, arrhythmogenic right ventricular, and left ventricular noncompaction phenotypes',
+      caption: 'Morphology is an entry point, not an etiology. Use the phenotype to choose the next causal questions—pedigree, loading, ischemia, inflammation, infiltration, toxins, rhythm, and genetics.',
+      credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/cardiomyopathy-phenotypes.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+    }],
+  },
+  'pericardial-and-myocardial-inflammation': {
+    figures: [{
+      src: '/images/curriculum/generated/pericardium-tamponade.png',
+      alt: 'Layered fibrous and serous pericardial anatomy with effusion, chamber collapse, septal shift, venous congestion, and rising pericardial pressure in tamponade',
+      caption: 'Tamponade is pressure physiology, not an effusion-size diagnosis. As pericardial pressure approaches chamber diastolic pressure, right-sided collapse and ventricular interdependence impair filling and output.',
+      credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/pericardium-tamponade.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+    }],
+  },
   'pulmonary-hypertension-and-right-heart-failure': {
+    figures: [{
+      src: '/images/curriculum/generated/pulmonary-hypertension-rv-failure.png',
+      alt: 'Progression from normal circulation to compensated pulmonary pressure overload and decompensated right ventricular failure with pulmonary arteriolar remodeling',
+      caption: 'The RV first hypertrophies against increased afterload, then dilates and loses efficiency. Septal shift, functional TR, and venous congestion can reduce LV filling even when the primary pressure burden is pulmonary.',
+      credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/pulmonary-hypertension-rv-failure.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+    }],
     formulas: [
       { name: 'Pulmonary vascular resistance', latex: String.raw`PVR = \frac{mPAP-PAWP}{CO}`, interpretation: 'Separates the transpulmonary gradient from the flow traversing it.', variables: 'Wood units' },
       { name: 'Transpulmonary gradient', latex: String.raw`TPG = mPAP - PAWP`, interpretation: 'A pressure difference, not a resistance; it remains flow-dependent.' },
@@ -276,6 +342,12 @@ export const lessonEnhancements: Record<string, LessonEnhancement> = {
     formulas: [{ name: 'Fractional flow reserve', latex: String.raw`FFR = \frac{P_d}{P_a}`, interpretation: 'Distal coronary pressure divided by aortic pressure during maximal hyperemia.' }],
   },
   'pacemakers-icds-and-crt': {
+    figures: [{
+      src: '/images/curriculum/generated/cied-lead-anatomy.png',
+      alt: 'Comparative transvenous lead anatomy for a dual-chamber pacemaker, ICD, and CRT-D with a coronary sinus left ventricular lead',
+      caption: 'Device names encode different jobs and lead paths: pacing preserves timing, an ICD adds defibrillation coils, and CRT adds a coronary-sinus tributary lead to recruit the LV from the epicardial surface.',
+      credit: 'AI-generated original medical illustration', sourceUrl: '/images/curriculum/generated/cied-lead-anatomy.png', license: 'Gusdorf Cardiology · 2026', wide: true,
+    }],
     formulas: [{ name: 'Corrected sinus-node recovery time', latex: String.raw`CSNRT = SNRT - SCL`, interpretation: 'An electrophysiology measure of sinus-node recovery after pacing.', variables: 'SCL = baseline sinus cycle length' }],
     resources: [{ label: 'Pacemaker rhythms and troubleshooting', source: 'LITFL ECG Library', href: 'https://litfl.com/pacemaker-rhythms-normal-patterns/' }],
   },
