@@ -17,6 +17,7 @@ import { lessonMasterclasses } from '../../../data/lesson-masterclasses';
 import { lessonMastery } from '../../../data/lesson-mastery';
 import { formulaExamples } from '../../../data/formula-examples';
 import { specialtyModules } from '../../../data/specialty-modules';
+import { cardiologyConcepts, linkCardiologyConcepts } from '../../../data/cardiology-concepts';
 import katex from 'katex';
 import 'katex/dist/katex.min.css';
 
@@ -64,13 +65,24 @@ const nextLesson = lessonIndex < track.lessons.length - 1 ? track.lessons[lesson
         <span class="rounded-full bg-clinical-100 px-2.5 py-1 text-xs font-medium text-clinical-600 dark:bg-clinical-700 dark:text-clinical-300">{lesson.level}</span>
       </div>
       <h1 class="font-heading text-3xl font-bold text-clinical-900 dark:text-clinical-50 sm:text-4xl">{lesson.title}</h1>
-      <p class="mt-3 text-lg leading-8 text-clinical-600 dark:text-clinical-300">{lesson.dek}</p>
+      <p class="mt-3 text-lg leading-8 text-clinical-600 dark:text-clinical-300" set:html={linkCardiologyConcepts(lesson.dek)} />
     </header>
 
     <section class={`${sectionClass} mb-5 border-l-4`} style={`border-left-color:${track.color}`}>
       <h2 class="font-heading text-xl font-semibold text-clinical-900 dark:text-clinical-50">Mechanism</h2>
-      <p class="mt-3 leading-7 text-clinical-700 dark:text-clinical-200">{lesson.mechanism}</p>
+      <p class="mt-3 leading-7 text-clinical-700 dark:text-clinical-200" set:html={linkCardiologyConcepts(lesson.mechanism)} />
     </section>
+
+    {lesson.slug === 'cardiac-cycle-and-pressure-volume-loops' && (
+      <nav class="mb-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4" aria-label="Hemodynamic concept deep dives">
+        {cardiologyConcepts.map((concept) => (
+          <a href={`/concepts/${concept.slug}`} class="rounded-xl border border-clinical-200 bg-white p-4 transition hover:border-blue-400 hover:shadow-sm dark:border-clinical-700 dark:bg-clinical-800">
+            <span class="font-heading text-lg font-semibold text-clinical-900 dark:text-white">{concept.term}</span>
+            <span class="mt-1 block text-xs leading-5 text-clinical-500 dark:text-clinical-400">Cell biology → chamber mechanics → bedside</span>
+          </a>
+        ))}
+      </nav>
+    )}
 
     {lesson.diagrams?.map((diagram) => <CardiologyDiagram kind={diagram} />)}
     {lesson.clinicalDiagram && <ClinicalDiagram kind={lesson.clinicalDiagram} />}
@@ -94,7 +106,7 @@ const nextLesson = lessonIndex < track.lessons.length - 1 ? track.lessons[lesson
                 <img src={figure.src} alt={figure.alt} loading="lazy" decoding="async" referrerpolicy="no-referrer" class="h-auto max-h-[36rem] w-full object-contain p-3" />
               </a>
               <figcaption class="border-t border-clinical-200 p-4 text-sm leading-6 text-clinical-600 dark:border-clinical-700 dark:text-clinical-300">
-                <p>{figure.caption}</p>
+                <p set:html={linkCardiologyConcepts(figure.caption)} />
                 <p class="mt-2 text-[0.7rem] text-clinical-400"><a href={figure.sourceUrl} target="_blank" rel="noreferrer" class="underline decoration-clinical-200 underline-offset-2 hover:text-blue-600">{figure.credit}</a> · {figure.license}</p>
               </figcaption>
             </figure>
@@ -124,7 +136,7 @@ const nextLesson = lessonIndex < track.lessons.length - 1 ? track.lessons[lesson
             <div class="rounded-lg border border-clinical-200 bg-clinical-50 p-4 dark:border-clinical-700 dark:bg-clinical-900">
               <h3 class="text-sm font-semibold text-clinical-800 dark:text-clinical-100">{formula.name}</h3>
               <div class="my-3 overflow-x-auto py-1 text-center text-lg text-clinical-900 dark:text-white" set:html={renderFormula(formula.latex)} />
-              <p class="text-sm leading-6 text-clinical-600 dark:text-clinical-300">{formula.interpretation}</p>
+              <p class="text-sm leading-6 text-clinical-600 dark:text-clinical-300" set:html={linkCardiologyConcepts(formula.interpretation)} />
               {formula.variables && <p class="mt-2 text-xs leading-5 text-clinical-400">Units/terms: {formula.variables}</p>}
               {formulaExamples[formula.name] && (
                 <details class="mt-3 rounded-lg border border-blue-200 bg-white dark:border-blue-900 dark:bg-clinical-800">
@@ -156,7 +168,7 @@ const nextLesson = lessonIndex < track.lessons.length - 1 ? track.lessons[lesson
             <h2 class="font-heading text-xl font-semibold text-clinical-900 dark:text-clinical-50">{section.title}</h2>
           </div>
           <ul class="mt-3 space-y-3 text-sm leading-6 text-clinical-700 dark:text-clinical-200">
-            {section.items.map((item) => <li class="flex gap-2"><span aria-hidden="true" class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500"></span><span>{item}</span></li>)}
+            {section.items.map((item) => <li class="flex gap-2"><span aria-hidden="true" class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500"></span><span set:html={linkCardiologyConcepts(item)} /></li>)}
           </ul>
         </section>
       ))}

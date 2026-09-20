@@ -1,4 +1,26 @@
 @import "tailwindcss";
+
+.concept-link {
+  color: var(--color-blue-700);
+  font-weight: 600;
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: color-mix(in srgb, var(--color-blue-500) 45%, transparent);
+  text-underline-offset: 0.2em;
+}
+
+.concept-link:hover {
+  color: var(--color-blue-900);
+  text-decoration-style: solid;
+}
+
+.dark .concept-link {
+  color: var(--color-blue-300);
+}
+
+.dark .concept-link:hover {
+  color: var(--color-blue-200);
+}
 @variant dark (&:where(.dark, .dark *));
 @plugin "@tailwindcss/typography";
 

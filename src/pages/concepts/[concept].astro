@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import { cardiologyConcepts, conceptBySlug, type CardiologyConcept } from '../../data/cardiology-concepts';
+
+export function getStaticPaths() {
+  return cardiologyConcepts.map((concept) => ({ params: { concept: concept.slug }, props: { concept } }));
+}
+
+const { concept } = Astro.props as { concept: CardiologyConcept };
+---
+
+<BaseLayout title={`${concept.term} - Cardiology Concepts`} description={concept.definition}>
+  <article class="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8">
+    <Breadcrumb crumbs={[{ label: 'Home', href: '/' }, { label: 'Concepts', href: '/concepts' }, { label: concept.term }]} />
+    <header class="border-b border-clinical-200 pb-8 dark:border-clinical-700">
+      <p class="text-xs font-bold uppercase tracking-[0.18em] text-blue-600">Physiology deep dive</p>
+      <h1 class="mt-2 font-heading text-4xl font-bold text-clinical-900 dark:text-white sm:text-5xl">{concept.term}</h1>
+      <p class="mt-5 text-xl leading-8 text-clinical-700 dark:text-clinical-200">{concept.definition}</p>
+      <div class="mt-6 rounded-xl border-l-4 border-blue-500 bg-blue-50 px-5 py-4 dark:bg-clinical-800">
+        <p class="text-xs font-bold uppercase tracking-[0.14em] text-blue-700 dark:text-blue-300">The clinical question</p>
+        <p class="mt-2 leading-7 text-clinical-800 dark:text-clinical-100">{concept.clinicalQuestion}</p>
+      </div>
+    </header>
+
+    {concept.equations?.length && (
+      <section class="my-8 grid gap-4 sm:grid-cols-2" aria-label="Key equations">
+        {concept.equations.map((equation) => (
+          <div class="rounded-xl border border-clinical-200 bg-clinical-50 p-5 dark:border-clinical-700 dark:bg-clinical-900">
+            <h2 class="text-sm font-semibold text-clinical-600 dark:text-clinical-300">{equation.label}</h2>
+            <p class="my-3 font-heading text-2xl font-semibold text-clinical-900 dark:text-white">{equation.expression}</p>
+            <p class="text-sm leading-6 text-clinical-600 dark:text-clinical-300">{equation.meaning}</p>
+          </div>
+        ))}
+      </section>
+    )}
+
+    <div class="space-y-9 py-8">
+      {concept.sections.map((section, index) => (
+        <section>
+          <div class="flex items-baseline gap-3">
+            <span class="text-xs font-bold text-clinical-400">{String(index + 1).padStart(2, '0')}</span>
+            <h2 class="font-heading text-2xl font-semibold text-clinical-900 dark:text-white">{section.title}</h2>
+          </div>
+          <div class="mt-4 space-y-4 text-base leading-8 text-clinical-700 dark:text-clinical-200">
+            {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+          </div>
+          {section.bullets?.length && <ul class="mt-4 space-y-2 rounded-xl bg-clinical-50 p-5 text-sm leading-6 text-clinical-700 dark:bg-clinical-900 dark:text-clinical-200">{section.bullets.map((item) => <li class="flex gap-3"><span class="text-blue-500">●</span><span>{item}</span></li>)}</ul>}
+        </section>
+      ))}
+    </div>
+
+    <section class="grid gap-5 border-t border-clinical-200 pt-8 dark:border-clinical-700 md:grid-cols-2">
+      <div class="rounded-xl bg-red-50 p-5 dark:bg-red-950/20">
+        <h2 class="font-heading text-xl font-semibold text-clinical-900 dark:text-white">Common errors</h2>
+        <ul class="mt-3 space-y-2 text-sm leading-6 text-clinical-700 dark:text-clinical-200">{concept.pitfalls.map((item) => <li>• {item}</li>)}</ul>
+      </div>
+      <div class="rounded-xl bg-blue-50 p-5 dark:bg-blue-950/20">
+        <h2 class="font-heading text-xl font-semibold text-clinical-900 dark:text-white">Connected concepts</h2>
+        <div class="mt-3 flex flex-wrap gap-2">{concept.connections.map((slug) => <a href={`/concepts/${slug}`} class="rounded-full bg-white px-3 py-1.5 text-sm font-medium text-blue-700 shadow-sm hover:underline dark:bg-clinical-800 dark:text-blue-300">{conceptBySlug[slug].term}</a>)}</div>
+        <a href="/curriculum/foundations/cardiac-cycle-and-pressure-volume-loops" class="mt-5 block text-sm font-semibold text-blue-700 hover:underline dark:text-blue-300">Apply it to pressure–volume loops →</a>
+      </div>
+    </section>
+
+    <section class="mt-8 border-t border-clinical-200 pt-6 dark:border-clinical-700">
+      <h2 class="text-sm font-semibold uppercase tracking-wide text-clinical-500">Further explanation and sources</h2>
+      <ul class="mt-3 space-y-2">{concept.sources.map((source) => <li><a href={source.href} target="_blank" rel="noreferrer" class="text-sm text-blue-600 hover:underline dark:text-blue-400">{source.label} ↗</a></li>)}</ul>
+    </section>
+  </article>
+</BaseLayout>
