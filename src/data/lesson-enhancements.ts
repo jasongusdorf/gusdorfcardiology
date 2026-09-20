@@ -5,6 +5,7 @@ export type LessonFigure = {
   credit: string;
   sourceUrl: string;
   license: string;
+  wide?: boolean;
 };
 
 export type LessonFormula = {
@@ -37,6 +38,15 @@ const commons = (file: string) =>
 export const lessonEnhancements: Record<string, LessonEnhancement> = {
   'cardiac-anatomy-and-flow': {
     figures: [
+      {
+        src: '/images/curriculum/generated/coronary-anatomy-atlas.png',
+        alt: 'High-fidelity anterior human heart with labeled right and left coronary arteries and a posterior inset showing the posterior descending artery',
+        caption: 'Coronary anatomy in three dimensions. Follow each vessel from its aortic origin, through its epicardial groove, to the myocardium it supplies; the posterior inset makes coronary dominance anatomically concrete.',
+        credit: 'AI-generated original medical illustration',
+        sourceUrl: '/images/curriculum/generated/coronary-anatomy-atlas.png',
+        license: 'Gusdorf Cardiology · 2026',
+        wide: true,
+      },
       {
         src: '/images/curriculum/anatomy/gross-heart-specimen.jpg',
         alt: 'Gross anatomical heart specimen viewed from above with the aorta, pulmonary artery, vena cava, auricles, and pulmonary valve labeled',
@@ -107,14 +117,25 @@ export const lessonEnhancements: Record<string, LessonEnhancement> = {
     ],
   },
   'electrophysiology-and-reentry': {
-    figures: [{
-      src: commons('c/ce/Currents_responsible_for_the_cardiac_action_potential.png'),
-      alt: 'Ventricular action potential phases with the principal sodium, calcium, and potassium currents',
-      caption: 'Channel currents change across the action potential; drug effects therefore depend on phase, tissue, rate, and substrate.',
-      credit: 'PeaBrainC, Wikimedia Commons',
-      sourceUrl: 'https://commons.wikimedia.org/wiki/File:Currents_responsible_for_the_cardiac_action_potential.png',
-      license: 'CC BY-SA 4.0',
-    }],
+    figures: [
+      {
+        src: '/images/curriculum/generated/cardiac-conduction-anatomy.png',
+        alt: 'Cutaway heart showing the SA node, AV node, His bundle, bundle branches, fascicles, moderator band, and Purkinje network in anatomical context',
+        caption: 'Conduction anatomy is spatial anatomy. The AV node–His inset localizes the vulnerable bridge through the fibrous skeleton; distal branching explains why fascicular and bundle disease produce characteristic activation patterns.',
+        credit: 'AI-generated original medical illustration',
+        sourceUrl: '/images/curriculum/generated/cardiac-conduction-anatomy.png',
+        license: 'Gusdorf Cardiology · 2026',
+        wide: true,
+      },
+      {
+        src: commons('c/ce/Currents_responsible_for_the_cardiac_action_potential.png'),
+        alt: 'Ventricular action potential phases with the principal sodium, calcium, and potassium currents',
+        caption: 'Channel currents change across the action potential; drug effects therefore depend on phase, tissue, rate, and substrate.',
+        credit: 'PeaBrainC, Wikimedia Commons',
+        sourceUrl: 'https://commons.wikimedia.org/wiki/File:Currents_responsible_for_the_cardiac_action_potential.png',
+        license: 'CC BY-SA 4.0',
+      },
+    ],
     formulas: [{ name: 'Corrected QT (Fridericia)', latex: String.raw`QTc_F = \frac{QT}{\sqrt[3]{RR}}`, interpretation: 'Often less rate-distorted than Bazett at tachycardic or bradycardic extremes.', variables: 'QT and RR in seconds' }],
     resources: [{ label: 'Cardiac action potentials', source: 'LITFL', href: 'https://litfl.com/cardiac-action-potentials/' }],
   },
@@ -195,6 +216,15 @@ export const lessonEnhancements: Record<string, LessonEnhancement> = {
     formulas: [{ name: 'Cardiac index', latex: String.raw`CI = \frac{CO}{BSA}`, interpretation: 'Indexes flow to body surface area; interpret beside perfusion rather than as an isolated cutoff.', variables: 'L/min/m²' }],
   },
   'valvular-heart-disease': {
+    figures: [{
+      src: '/images/curriculum/generated/four-valve-anatomy.png',
+      alt: 'Superior oblique cardiac cutaway showing all four valves, the fibrous annuli, chordae, papillary muscles, coronary ostium, and aortic-mitral continuity',
+      caption: 'The four valves share a crowded fibrous neighborhood but use two different support systems: chordal–papillary restraint for the AV valves and free-standing cusps for the semilunar valves.',
+      credit: 'AI-generated original medical illustration',
+      sourceUrl: '/images/curriculum/generated/four-valve-anatomy.png',
+      license: 'Gusdorf Cardiology · 2026',
+      wide: true,
+    }],
     formulas: [
       { name: 'Aortic valve area', latex: String.raw`AVA = \frac{CSA_{LVOT}\times VTI_{LVOT}}{VTI_{AV}}`, interpretation: 'The continuity equation is vulnerable to LVOT diameter error, irregular rhythm, and poor Doppler alignment.' },
       { name: 'Mitral valve area by pressure half-time', latex: String.raw`MVA \approx \frac{220}{PHT}`, interpretation: 'Useful in selected mitral stenosis; unreliable when chamber compliance or flow changes materially.' },
@@ -212,6 +242,15 @@ export const lessonEnhancements: Record<string, LessonEnhancement> = {
     resources: [{ label: 'Atrial fibrillation ECG features', source: 'LITFL ECG Library', href: 'https://litfl.com/atrial-fibrillation-ecg-library/' }],
   },
   'acute-coronary-syndromes': {
+    figures: [{
+      src: '/images/curriculum/generated/endothelium-early-atherosclerosis.png',
+      alt: 'Longitudinal coronary artery cutaway comparing normal endothelial microanatomy with endothelial dysfunction, LDL retention, foam cells, and early eccentric plaque',
+      caption: 'Endothelium is a single-cell interface, not passive wallpaper. Loss of barrier and signaling function permits intimal lipid retention, leukocyte recruitment, foam-cell formation, and fibrous-cap remodeling long before the lumen tells the whole story.',
+      credit: 'AI-generated original medical illustration',
+      sourceUrl: '/images/curriculum/generated/endothelium-early-atherosclerosis.png',
+      license: 'Gusdorf Cardiology · 2026',
+      wide: true,
+    }],
     formulas: [{ name: 'Fractional flow reserve', latex: String.raw`FFR = \frac{P_d}{P_a}\ \text{during maximal hyperemia}`, interpretation: 'A pressure ratio used to estimate whether an epicardial stenosis limits maximal flow; it is not a plaque-vulnerability test.' }],
     resources: [{ label: 'Myocardial ischaemia and infarction', source: 'LITFL ECG Library', href: 'https://litfl.com/myocardial-ischaemia-ecg-library/' }],
   },
@@ -225,6 +264,15 @@ export const lessonEnhancements: Record<string, LessonEnhancement> = {
     formulas: [{ name: 'Drug half-life', latex: String.raw`t_{1/2} = \frac{0.693\,V_d}{CL}`, interpretation: 'Volume of distribution and clearance determine the time course; organ dysfunction can therefore change accumulation.' }],
   },
   'coronary-angiography-and-pci': {
+    figures: [{
+      src: '/images/curriculum/generated/angiography-ivus-pci.png',
+      alt: 'Three-panel comparison of coronary angiographic lumen silhouette, intravascular plaque cross-section, pressure wire, and a deployed coronary stent',
+      caption: 'One lesion, three questions: angiography outlines the contrast lumen, intravascular imaging reveals plaque and vessel wall, and PCI scaffolds the selected segment. Pressure physiology addresses functional significance rather than plaque composition.',
+      credit: 'AI-generated original medical illustration',
+      sourceUrl: '/images/curriculum/generated/angiography-ivus-pci.png',
+      license: 'Gusdorf Cardiology · 2026',
+      wide: true,
+    }],
     formulas: [{ name: 'Fractional flow reserve', latex: String.raw`FFR = \frac{P_d}{P_a}`, interpretation: 'Distal coronary pressure divided by aortic pressure during maximal hyperemia.' }],
   },
   'pacemakers-icds-and-crt': {

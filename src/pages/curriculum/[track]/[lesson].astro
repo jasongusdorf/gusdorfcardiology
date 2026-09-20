@@ -87,7 +87,10 @@ const nextLesson = lessonIndex < track.lessons.length - 1 ? track.lessons[lesson
         </div>
         <div class="grid gap-5 md:grid-cols-2">
           {enhancements.figures.map((figure) => (
-            <figure class="overflow-hidden rounded-xl border border-clinical-200 bg-white dark:border-clinical-700 dark:bg-clinical-800">
+            <figure class:list={[
+              'overflow-hidden rounded-xl border border-clinical-200 bg-white dark:border-clinical-700 dark:bg-clinical-800',
+              figure.wide && 'md:col-span-2',
+            ]}>
               <a href={figure.sourceUrl} target="_blank" rel="noreferrer" class="block bg-white">
                 <img src={figure.src} alt={figure.alt} loading="lazy" decoding="async" referrerpolicy="no-referrer" class="h-auto max-h-[36rem] w-full object-contain p-3" />
               </a>
